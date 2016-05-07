@@ -158,14 +158,14 @@ p{
 	opacity:1.0;
 	background-color:yellow;
 	border-color:yellow;
-	background-image: url("goal.png");
+	background-image: url("goal01.png");
 }
 
 
 .wall{
 	background-color:BlanchedAlmond;
 	border-color:peru;
-	background-image: url("blick01.png");
+	background-image: url("brick01.png");
 }
 
 .hlp{
