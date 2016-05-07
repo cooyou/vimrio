@@ -1,0 +1,178 @@
+/*viゲームのスタイルシート*/
+
+*{
+	box-sizing: border-box;
+	overflow:hidden;
+	padding:0px;
+	margin:0px;
+ 
+	border-style:none;
+	text-align:center;
+ 
+}
+
+
+#area{
+  position: absolute;
+}
+
+div{
+	display: table;
+	position: absolute;
+	z-index: 1;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+p{
+	display: table-cell;
+	text-align:center;
+	vertical-align:middle;
+	position: relative;
+}
+
+
+
+.header{
+	background-color: papayawhip;
+	border-style:solid;
+	border-color:wheat;
+	z-index:50;
+}
+
+.cmbstage select{
+	border-style:solid;
+	border-color:MediumSpringGreen;
+}
+
+.notebtn{
+	background-color: yellow;
+	font-size:x-small;
+	border-style:solid;
+	border-color:MediumSpringGreen;
+	z-index:51;
+}
+
+.resetbtn{
+	background-color: yellow;
+	font-size:x-small;
+	border-style:solid;
+	border-color:MediumSpringGreen;
+	z-index:51;
+}
+
+.footer{
+	background-color: peru;
+	border-style:solid;
+	border-color:sienna;
+	z-index:50;
+}
+
+.leftside{
+	background-color: blue;
+	border-style:solid;
+	border-color:blue;
+}
+
+.rightside{
+	background-color: red;
+	border-style:solid;
+	border-color:red;
+}
+
+.retrybtn{
+	background-color: white;
+	border-style:solid;
+	border-color:MediumSpringGreen;
+	z-index:51;
+}
+
+.nextbtn{
+	background-color: white;
+	border-style:solid;
+	border-color:MediumSpringGreen;
+	z-index:51;
+}
+
+
+.cvs{
+	background-color: lightgrey;
+	border-style:solid;
+	border-color:lightgrey;
+	z-index:1;
+}
+
+.game{
+
+}
+
+.item{
+	background-color: lightgrey;
+	border-style:solid;
+	border-color:gray;
+	background-size: auto auto;
+	z-index:2;
+}
+
+.keystring{
+	opacity:0.7;
+	border-color:green;
+}
+.ansStr{
+
+	background-color: white;
+	color: gray;
+	z-index:5;
+
+}
+
+.typeStr{
+	background-color: lime;
+	color: black;
+	z-index:6;
+}
+
+.keystring p{
+	letter-spacing: 0.5em;
+}
+
+.endpanel{
+	opacity:0.7;
+	background-color: yellow;
+	border-color:skyblue;
+	z-index:10;
+	display:none;
+}
+
+
+.vimrio{
+	background-image: url("vimrio01.png");
+	background-color:transparent;
+	border-color:blue;
+	z-index:5;
+}
+
+.goal{
+	opacity:1.0;
+	background-color:yellow;
+	border-color:yellow;
+	background-image: url("goal.png");
+}
+
+
+.wall{
+	background-color:BlanchedAlmond;
+	border-color:peru;
+	background-image: url("blick01.png");
+}
+
+.hlp{
+	opacity:0.7;
+	background-color: Cornsilk;
+	border-style:solid;
+	border-color:Coral;
+	z-index:40;
+	display:none;
+}
