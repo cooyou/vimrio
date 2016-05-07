@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!--viゲームのHTML-->
+<meta name="viewport" content="width=800, user-scalable=no">
+<title>VIMRIO : vi editor game</title>
+<link rel="stylesheet" href="vimrio.css" type="text/css" />
+<script type="text/javascript" src="jquery-1.12.3.min.js"></script> 
+<script type="text/javascript" src="vimrio.js"></script> 
+</head>
+<body onLoad="initBody()">
+<span id="area">
+	<div class="header" >
+		<p class="cmbstage"></p><div class="ttl"><p>VIMRIO</p></div><div class="notebtn" onClick="showHelp()"><p>…</p></div>
+	</div>
+	<div class="leftside" >
+	<p></p>
+	</div>
+	<div class="rightside" >
+	<p></p>
+	</div>
+	<div class="footer" >
+	<p></p>
+	</div>
+	<div class="cvs" >
+		<div class="game"></div>
+		<div class="endpanel"><div class="fnt endmsg"><p>Good</p></div><div class="retrybtn" onClick="retryStage()"><p>retry</p></div><div class="nextbtn" onClick="nextStage()"><p>next</p></div></div>
+	</div>
+	
+	<div class="hlp">
+		<br/>
+		<h2>VIMRIO</h2>
+		<h4>ver1.0.0</h4>
+		<br/>
+		<h4>vi editor game</h4>
+	</div>
+</span>
+</body>
+</html>
