@@ -11,4 +11,6 @@ road map
 stage3,stage4....stage10..........stage20..............................................................stage999  
   
 Please give me some stages which anyone created.  
+How to:  
+You only make stageXXX.js. 
 
