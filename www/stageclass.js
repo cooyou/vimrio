@@ -39,14 +39,14 @@ var StageClass=function(){
 		var ansc=this.ansStr.substr(this.frameIndex,1);
 
 		if(ansc===c){
-			console.log("correct");
+			//console.log("correct");
 			this.typeStr+=c;
 			this.frameIndex++;
 			this.setFrame();
 			return true;
 		}
 		else{
-			console.log("fail");
+			//console.log("fail");
 			return false;
 		}
 		

@@ -57,7 +57,7 @@ function jqInit(){
 	game=new GameClass();
 	
 	$("body").keydown(function(e){
-	    console.log(e.keyCode);
+	    //console.log(e.keyCode);
 
 
 		var stage=game.getStage();
@@ -69,22 +69,35 @@ function jqInit(){
 		else{
 			c=c.toLowerCase()
 		}
-		console.log("type="+c);
-		var success=stage.typeKeyboard(c);
-		if(success==false){
-			errorcnt++;
-			showFooter();
+		//console.log("type="+c);
+		var isfinish=stage.isFinish();
+		if(isfinish==false){
+			var success=stage.typeKeyboard(c);
+			if(success==false){
+				errorcnt++;
+				showFooter();
+			}
+			showAns(success);
 		}
-		showAns(success);
 		
         switch(e.keyCode){
 
  			case 32: // space
- 			console.log("space");
+ 				console.log("space");
+ 			break;
+ 			
+ 			case 13: // enter
+	 			console.log("enter");
+	 			if(isfinish){
+	 				nextStage();
+	 				return ;
+	 			}
  			break;
  			
         }
-        stageUpdate(stage);
+        if(isfinish==false){
+        	stageUpdate(stage);
+        }
     });
 }    
 
@@ -111,7 +124,6 @@ function loadScriptAjax(fname,i){
 			loadScriptAjax(fname,i);
 		},
 		error: function(){
-			var qatextitem=$(".qatext");
 
             stagenum=i;
             
@@ -198,10 +210,11 @@ function setItem(item){
 	var backgroundColor=item.getBackgroundColor();
 	var borderColor=item.getBorderColor();
 	
+	var backgroundImage=item.getBackgroundImage();
+	
 	var display=item.getDisplay();
 	
-	//console.log("id="+id+" name="+name+" x="+x+" y="+y+" w="+w+" h="+h+" bgc="+backgroundColor+" bdc="+borderColor+" display="+display);
-	
+	var zIndex=item.getZIndex();
 
 	if(x!=null && x!=""){
 		$(id).css("left",""+getGameItemPixX(x)+"px");
@@ -221,6 +234,9 @@ function setItem(item){
 	if(borderColor!=null && borderColor!=""){
 		$(id).css("border-color",borderColor);
 	}
+	if(backgroundImage!=null && backgroundImage!=""){
+		$(id).css("background-image",'url("'+backgroundImage+'")');
+	}
 	if(display!=null && display!=""){
 		if(display){
 			$(id).css("display","block");
@@ -229,9 +245,11 @@ function setItem(item){
 			$(id).css("display","none");
 		}
 	}
+	if(zIndex!=null && zIndex!=""){
+		$(id).css("z-index",zIndex);
+	}
 	
 	$(id).css("background-size",""+getGameItemPixX(w)+"px "+getGameItemPixY(h)+"px");
-	//console.log("id="+id+" name="+name+" x="+$(name).css("left")+" y="+$(name).css("top")+" w="+$(name).css("width")+" h="+$(name).css("height")+" bgc="+$(name).css("background-color")+" bdc="+$(name).css("border-color")+" display="+$(name).css("display"));
 
 }
 
@@ -293,7 +311,7 @@ function initStages(){
     $(".keystring").css("padding-bottom",""+fontsize/5+"px");
     $(".keystring").css("top",""+fontsize/2+"px");
     $(".keystring").css("left",""+fontsize+"px");
-    
+
 	$(".ansStr").css("display","block");
 	$(".endpanel").css("display","none");
 	$(".hlp").css("display","none");
@@ -301,7 +319,8 @@ function initStages(){
 }
 
 function stageUpdate(stage){
-	
+ 
+    
 	stage.setFrame();
 	var items=stage.getItems();
 
