@@ -117,9 +117,15 @@ p{
 }
 
 .keystring{
-	opacity:0.7;
+	opacity:0.6;
 	border-color:green;
+	word-break:break-all;
+
 }
+.keystring p{
+	text-align:left;
+}
+
 .ansStr{
 
 	background-color: white;
@@ -144,28 +150,6 @@ p{
 	border-color:skyblue;
 	z-index:10;
 	display:none;
-}
-
-
-.vimrio{
-	background-image: url("vimrio01.png");
-	background-color:transparent;
-	border-color:blue;
-	z-index:5;
-}
-
-.goal{
-	opacity:1.0;
-	background-color:yellow;
-	border-color:yellow;
-	background-image: url("goal01.png");
-}
-
-
-.wall{
-	background-color:BlanchedAlmond;
-	border-color:peru;
-	background-image: url("brick01.png");
 }
 
 .hlp{

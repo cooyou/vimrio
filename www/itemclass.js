@@ -10,7 +10,9 @@ var ItemClass=function(){
 	this.h=10;
 	this.backgroundColor="white";
 	this.borderColor="gray";
+	this.backgroundImage="";
 	this.opacity=1.0;
+	this.zIndex=2;
 	
 	this.animations=new Array();
 	
@@ -100,12 +102,28 @@ var ItemClass=function(){
 		return this.borderColor;
 	};
 	
+	this.setBackgroundImage=function(backgroundImage){
+		this.backgroundImage=backgroundImage;
+	};
+	
+	this.getBackgroundImage=function(){
+		return this.backgroundImage;
+	};
+	
 	this.setOpacity=function(opacity){
 		this.opacity=opacity;
 	};
 	
 	this.getOpacity=function(){
 		return this.opacity;
+	};
+	
+	this.setZIndex=function(zIndex){
+		this.zIndex=zIndex;
+	};
+	
+	this.getZIndex=function(){
+			return this.zIndex;
 	};
 	
 	this.addAnimation=function(param){
@@ -115,7 +133,7 @@ var ItemClass=function(){
 
 	
 	this.addEmptyAnimation=function(){
-		this.animations.push({"dsp":true,"x":-1,"y":-1,"w":-1,"h":-1,"bgc":-1,"bdc":-1,"opc":-1});
+		this.animations.push({"dsp":true,"x":"","y":"","w":"","h":"","bgc":"","bdc":"","img":"","opc":"","z":""});
 	};
 	
 	this.setFrameStartIndex=function(frameStartIndex){
@@ -123,7 +141,7 @@ var ItemClass=function(){
 	};
 	
 	this.setFrame=function(frameIndex){
-		console.log("setFrame");
+		//console.log("setFrame");
 		var i=frameIndex-this.frameStartIndex;
 		if(i<0 || i>=this.animations.length){
 			this.setDisplay(false);
@@ -136,7 +154,9 @@ var ItemClass=function(){
 		this.setWH(animation.w,animation.w);
 		this.setBackgroundColor(animation.bgc);
 		this.setBorderColor(animation.bdc);
+		this.setBackgroundImage(animation.img);
 		this.setOpacity(animation.opc);
+		this.setZIndex(animation.z);
 
 	};
 }
