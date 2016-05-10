@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<!--viゲームのHTML-->
+<title>VIMRIO helper</title>
+<script type="text/javascript" src="../jquery-1.12.3.min.js"></script> 
+<style type="text/css">
+*{
+	margin:5px;
+	padding:5px;
+}
+
+#hlptbl{
+border-collapse: collapse;
+border-style:solid;
+border-width:1px;
+border-color:white;
+background-color:lightgray;
+margin:0px;
+padding:0px;
+}
+td{
+border-color:white;
+width:6px;
+height:6px;
+margin:0px;
+padding:0px;
+border-style:solid;
+border-width:1px;
+}
+th{
+border-color:white;
+margin:0px;
+padding:0px;
+border-style:solid;
+border-width:1px;
+}
+
+.hlptag{
+position:absolute;
+}
+
+.hlpwaitmsg{
+background-color:yellow;
+}
+
+input{
+font-size:+1;
+letter-spacing: 0.5em;
+}
+
+.hlpcol{
+	width:80px;
+	height:20px;
+	border-style:solid;
+	border-width:1px;
+	border-color:Ivory;
+	display: inline-block;
+}
+
+.hlpcolstart{
+	background-color:cyan;
+}
+
+.hlpcolroad{
+	background-color:LawnGreen;
+}
+
+.hlpcolgoal{
+	background-color:green;
+}
+
+.hlpcolwall{
+	background-color:Peru
+}
+
+.hlpcolwarn{
+	background-color:yellow;
+}
+
+.hlprngwarn{
+	width:240px;
+	height:20px;
+	border-style:solid;
+	border-width:1px;
+	border-color:yellow;
+	background-color:yellow;
+	display: inline-block;
+	visibility:hidden;
+}
+.hlpcharwarn{
+	width:240px;
+	height:20px;
+	border-style:solid;
+	border-width:1px;
+	border-color:yellow;
+	background-color:yellow;
+	display: inline-block;
+	visibility:hidden;
+}
+</style>
+
+<script  type="text/javascript">
+
+function initHelper(){
+  createHlpTable();
+}
+
+function createHlpTable(){
+  var str="";
+  var x,y;
+  for(y=0;y<100;y++){
+    str+="<tr>";
+  	for(x=0;x<100;x++){
+  	  str+="<td></td>";
+  	}
+  	str+="</tr>\n";
+  }
+  
+  $('#hlptbl').html(str);
+  
+}
+
+function drawBlock(no,name,x,y,u,color){
+	var ix,iy;
+	var xu,yu;
+	xu=x*u;
+	yu=y*u
+	for(iy=0;iy<u;iy++){
+		for(ix=0;ix<u;ix++){
+			var prename=$("#hlptbl tr:eq(" + (yu+iy) + ") td:eq(" + (xu+ix) + ")" ).attr("name");
+			var col=color;
+			if(prename!=""){
+				col="yellow";
+			}
+			if(iy==0 && ix==0){
+			  $("#hlptbl tr:eq(" + (yu+iy) + ") td:eq(" + (xu+ix) + ")" ).html('<span class="hlptag">'+no+'</span>');
+			}
+			$("#hlptbl tr:eq(" + (yu+iy) + ") td:eq(" + (xu+ix) + ")" ).attr("name",name);
+	  		$("#hlptbl tr:eq(" + (yu+iy) + ") td:eq(" + (xu+ix) + ")" ).css("background-color",col);
+	  		if(ix==0 || iy==0 || ix==u-1 || iy==u-1){
+	  			$("#hlptbl tr:eq(" + (yu+iy) + ") td:eq(" + (xu+ix) + ")" ).css("opacity",0.9);
+	  		}
+	  		else{
+	  			$("#hlptbl tr:eq(" + (yu+iy) + ") td:eq(" + (xu+ix) + ")" ).css("opacity",0.3);
+	  		}
+	  	}
+	}
+}
+
+function isWall(x,y,u,vimrioname){
+	var xu,yu;
+	xu=x*u;
+	yu=y*u;
+	if(xu>=0 && xu<100 && yu>=0 && yu<100 && $("#hlptbl tr:eq(" + (yu) + ") td:eq(" + (xu) + ")" ).attr("name")==vimrioname){
+		return false;
+	}
+	if(xu-u>=0 && xu-u<100 && yu-u>=0 && yu-u<100 && $("#hlptbl tr:eq(" + (yu-u) + ") td:eq(" + (xu-u) + ")" ).attr("name")==vimrioname){
+		return true;
+	}
+	if(xu>=0 && xu<100 && yu-u>=0 && yu-u<100 && $("#hlptbl tr:eq(" + (yu-u) + ") td:eq(" + (xu) + ")" ).attr("name")==vimrioname){
+		return true;
+	}
+	if(xu+u>=0 && xu+u<100 && yu-u>=0 && yu-u<100 && $("#hlptbl tr:eq(" + (yu-u) + ") td:eq(" + (xu+u) + ")" ).attr("name")==vimrioname){
+		return true;
+	}
+	if(xu-u>=0 && xu-u<100 && yu>=0 && yu<100 && $("#hlptbl tr:eq(" + (yu) + ") td:eq(" + (xu-u) + ")" ).attr("name")==vimrioname){
+		return true;
+	}
+	if(xu+u>=0 && xu+u<100 && yu>=0 && yu<100 && $("#hlptbl tr:eq(" + (yu) + ") td:eq(" + (xu+u) + ")" ).attr("name")==vimrioname){
+		return true;
+	}
+	if(xu-u>=0 && xu-u<100 && yu+u>=0 && yu+u<100 && $("#hlptbl tr:eq(" + (yu+u) + ") td:eq(" + (xu-u) + ")" ).attr("name")==vimrioname){
+		return true;
+	}
+	if(xu>=0 && xu<100 && yu+u>=0 && yu+u<100 && $("#hlptbl tr:eq(" + (yu+u) + ") td:eq(" + (xu) + ")" ).attr("name")==vimrioname){
+		return true;
+	}
+	if(xu+u>=0 && xu+u<100 && yu+u>=0 && yu+u<100 && $("#hlptbl tr:eq(" + (yu+u) + ") td:eq(" + (xu+u) + ")" ).attr("name")==vimrioname){
+		return true;
+	}
+
+	return false;
+}
+
+function drawWall(wallname,u,vimrioname){
+	var code="";
+	var x,y;
+	var ary=[];
+	for(y=0;y*u<100;y++){
+		for(x=0;x*u<100;x++){
+			if(isWall(x,y,u,vimrioname)){
+				ary.push([x,y]);
+				code+="//"+ary.length+"\n";
+				code+="item=stage.createNewItem();\n";
+				code+="item.setName(\""+wallname+"\");\n";
+				code+="item.addAnimation({\"dsp\":true,\"x\":"+x+"*u,\"y\":"+y+"*u,\"w\":u,\"h\":u,\"img\":\"brick01.png\",\"bgc\":\"BlanchedAlmond\",\"bdc\":\"peru\"});\n";
+				code+="stage.addItem(item);\n";
+				code+="\n";
+			}
+		}
+	}
+	
+	var i;
+	for(i=0;i<ary.length;i++){
+		var x=ary[i][0];
+		var y=ary[i][1];
+		drawBlock(i+1,wallname,x,y,u,"Peru");
+	}
+	return code;
+}
+
+function createCode(){
+  $('.hlpcodebtn').attr("disabled",true);
+  $('.hlpwaitmsg').css("visibility","visible");
+  setTimeout("createWorld()",100);
+
+}
+
+function createWorld(){
+  $("#hlptbl tr td").attr("name","");
+  $("#hlptbl tr td").css("background-color","lightgray");
+  $("#hlptbl tr td").css("opacity","1.0");
+  $(".hlptag").parent("td").html("");
+  var u=Number($('#hlpunitsize').val());
+  var x0=Number($('#hlpx0').val());
+  var y0=Number($('#hlpy0').val());
+  
+  var ansstr=$('#hlpansstr').val();
+  var anslen=ansstr.length;
+  var i;
+  var x=x0;
+  var y=y0;
+  var vimrioname="vimrio";
+  var goalname="goal";
+  var wallname="wall";
+  
+  var code="//Created by VIMRIO helper\n\n";
+  code+="//Please rename XXX.\n";
+  code+="//For example. If current final stage is 012, this function's name is \"initStage013\" and save \"stage013.js\".\n";
+  code+="function initStageXXX(stage){\n\n";
+  code+="var item;\n";
+  code+="var u="+u+";\n";
+  code+="stage.setAnsStr(\""+ansstr+"\");\n";
+  code+="item=stage.createNewItem();\n";
+  code+="item.setName(\""+vimrioname+"\");\n";
+  code+="item.setFrameStartIndex(0);\n";
+  code+="stage.addItem(item);\n";
+  code+="//1 start\n";
+  code+="item.addAnimation({\"dsp\":true,\"x\":"+x+"*u,\"y\":"+y+"*u,\"w\":u,\"h\":u,\"bgc\":\"transparent\",\"bdc\":\"blue\",\"img\":\""+vimrioname+"01.png\",\"z\":5,\"opc\":1.0});\n";
+  var rngwarnflag=false;
+  var charwarnflag=false;
+  if(x*u<0 || x*u>=100 || y*u<0 || y*u>=100){
+  		rngwarnflag=true;
+  }
+  else{
+		drawBlock(1,vimrioname,x,y,u,"cyan");
+		$('#hlptbl tr:eq('+y*u+') td:eq('+x*u+')').html("<span class='hlptag'>1 start</span>");
+  }
+  
+  for(i=0;i<anslen;i++){
+  
+    var c=ansstr.substr(i,1);
+   
+
+    switch(c){
+    	case 'h':	if((x-1)*u>=0 && (x-1)*u<100){
+    					x-=1;
+    					code+="//"+(i+2)+" h\n";
+    					code+="item.addAnimation({\"x\":"+x+"*u});\n";
+    				}
+    				else{
+    					rngwarnflag=true;
+    				}
+    				break;
+    	case 'l':	if((x+1)*u>=0 && (x+1)*u<100){
+    					x+=1;
+    					code+="//"+(i+2)+" l\n";
+    					code+="item.addAnimation({\"x\":"+x+"*u});\n";
+    				}
+    				else{
+    					rngwarnflag=true;
+    				}
+    				break;
+    	case 'j':	if((y+1)*u>=0 && (y+1)*u<100){
+    					y+=1;
+    					code+="//"+(i+2)+" j\n";
+    					code+="item.addAnimation({\"y\":"+y+"*u});\n";
+    				}
+    				else{
+    					rngwarnflag=true;
+    				}
+    				break;
+    	case 'k':	if((y-1)*u>=0 && (y-1)*u<100){
+    					y-=1;
+    					code+="//"+(i+2)+" k\n";
+    					code+="item.addAnimation({\"y\":"+y+"*u});\n";
+    				}
+    				else{
+    					rngwarnflag=true;
+    				}
+    				break;
+    	default : charwarnflag=true;
+    				break;
+    }
+    if(i==anslen-1){
+    	drawBlock(1,vimrioname,x,y,u,"green");
+    	$('#hlptbl tr:eq('+y*u+') td:eq('+x*u+')').html("<span class='hlptag'>1 goal</span>");
+    }
+    else{
+    	drawBlock(i+2,vimrioname,x,y,u,"LawnGreen");
+    }
+    
+  }
+  
+  code+="\n";
+  code+="//1 goal\n";
+  code+="item=stage.createNewItem();\n";
+  code+="item.setName(\""+goalname+"\");\n";
+  code+="item.addAnimation({\"dsp\":true,\"x\":"+x+"*u,\"y\":"+y+"*u,\"w\":u,\"h\":u,\"img\":\"goal01.png\",\"bgc\":\"yellow\",\"bdc\":\"yellow\"});\n";
+  code+="stage.addItem(item);\n";
+  code+="\n";
+  
+  
+  code+=drawWall(wallname,u,vimrioname);
+  code+="\n";
+  code+="}\n";
+  $('#hlpcodestr').val(code);
+  $('.hlpcodebtn').attr("disabled",false);
+  $('.hlpwaitmsg').css("visibility","hidden");
+  
+  if(rngwarnflag){
+		$('.hlprngwarn').css("visibility","visible");
+  }
+  else{
+  		$('.hlprngwarn').css("visibility","hidden");
+  }
+  if(charwarnflag){
+  		$('.hlpcharwarn').css("visibility","visible");
+  }
+  else{
+  		$('.hlpcharwarn').css("visibility","hidden");
+  }
+}
+
+</script>
+</head>
+<body onLoad="initHelper()">
+<h4>VIMRIO helper for creator ver1.0.0</h4><br/>
+unit size=<input type="text" id="hlpunitsize" value="10" size="4"/>[%]<br/>
+start x=<input type="text" id="hlpx0" value="2" size="4"/>[unit]
+ , y=<input type="text" id="hlpy0" value="5" size="4"/>[unit]<br/>
+(support character= h,j,k,l)<br/>
+answer string=<input type="text" id="hlpansstr" value="jlllllkkkhh"  size="80"/><br/>
+<input class="hlpcodebtn" type="button" onClick="createCode()" value="Create Code" /><span class="hlpwaitmsg" style="visibility:hidden">Please wait a minute.</span>
+<br/>
+<span class="hlpcol hlpcolstart">start</span><span class="hlpcol hlpcolroad">road</span><span class="hlpcol hlpcolgoal">goal</span><span class="hlpcol hlpcolwall">wall</span><span class="hlpcol hlpcolwarn">warning</span><br/>
+<span class="hlprngwarn">warning draw range</span><span class="hlpcharwarn">warning not recognized character</span><br/>
+<table id="hlptbl">
+</table>
+<p>code</p>
+<textarea id="hlpcodestr" cols="80" rows="20">
+</textarea>
+</body>
+</html>

@@ -115,12 +115,14 @@ function getGameItemPixY(per){
 function loadScriptAjax(fname,i){
 	var nostr=('00'+(i+1)).slice(-3);
 	var fullfname=(fname+nostr)+".js";
+	console.log("load "+fullfname);
 	$.ajax({
 		type: 'GET',
 		dataType: 'script',
 		url:fullfname,
 		success: function(data){
 			i++;
+			console.log("stagei="+i);
 			loadScriptAjax(fname,i);
 		},
 		error: function(){
