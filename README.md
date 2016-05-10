@@ -1,4 +1,4 @@
-# vimrio
+# VIMRIO
 vi editor practice game  
 VIMRIO ver1.2.0 stage1,stage2,stage3  
 [Start Game ver1.2.0](http://cooyou.github.io/vimrio/www/vimrio.html)  
@@ -23,4 +23,4 @@ For windows user (or mono user for linux , mac)
 www/tanjunwsvmono.exe  
 This exe file is a web server.  
 You run exe as administrator, you can use http://localhost:8080/vimrio.html on browser easilly.  
-
+cat8.exe is UTF8 text dump tool on Power Shell.   
