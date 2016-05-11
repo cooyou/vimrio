@@ -103,11 +103,19 @@ function jqInit(){
 
 
 function getGameItemPixX(per){
-	return Math.round(cvsw*per*0.01);
+	var pixx=Math.floor(cvsw*per*0.01);
+	if(pixx<0){
+		pixx=0;
+	}
+	return pixx;
 }
 
 function getGameItemPixY(per){
-	return Math.round(cvsh*per*0.01);
+	var pixy=Math.floor(cvsh*per*0.01);
+	if(pixy<0){
+		pixy=0;
+	}
+	return pixy;
 }
 
 
@@ -208,7 +216,7 @@ function setItem(item){
 	y=item.getY();
 	w=item.getW();
 	h=item.getH();
-	
+
 	var backgroundColor=item.getBackgroundColor();
 	var borderColor=item.getBorderColor();
 	
@@ -218,28 +226,28 @@ function setItem(item){
 	
 	var zIndex=item.getZIndex();
 
-	if(x!=null && x!=""){
+	if(typeof(x)!=="undefined" && x!==""){
 		$(id).css("left",""+getGameItemPixX(x)+"px");
 	}
-	if(y!=null && y!=""){
+	if(typeof(y)!=="undefined" && y!==""){
 		$(id).css("top",""+getGameItemPixY(y)+"px");
 	}
-	if(w!=null && w!=""){
+	if(typeof(w)!=="undefined" && w!==""){
 		$(id).css("width",""+getGameItemPixX(w)+"px");
 	}
-	if(h!=null && h!=""){
+	if(typeof(h)!=="undefined" && h!==""){
 		$(id).css("height",""+getGameItemPixY(h)+"px");
 	}
-	if(backgroundColor!=null && backgroundColor!=""){
+	if(typeof(backgroundColor)!=="undefined" && backgroundColor!=""){
 		$(id).css("background-color",backgroundColor);
 	}
-	if(borderColor!=null && borderColor!=""){
+	if(typeof(borderColor)!=="undefined" && borderColor!=""){
 		$(id).css("border-color",borderColor);
 	}
-	if(backgroundImage!=null && backgroundImage!=""){
+	if(typeof(backgroundImage)!=="undefined" && backgroundImage!=""){
 		$(id).css("background-image",'url("'+backgroundImage+'")');
 	}
-	if(display!=null && display!=""){
+	if(typeof(display)!=="undefined" && display!=""){
 		if(display){
 			$(id).css("display","block");
 		}
@@ -247,11 +255,12 @@ function setItem(item){
 			$(id).css("display","none");
 		}
 	}
-	if(zIndex!=null && zIndex!=""){
+	if(typeof(zIndex)!=="undefined" && zIndex!==""){
 		$(id).css("z-index",zIndex);
 	}
-	
-	$(id).css("background-size",""+getGameItemPixX(w)+"px "+getGameItemPixY(h)+"px");
+	if(typeof(w)!=="undefined" && w!=="" && typeof(h)!=="undefined" && h!==""){
+		$(id).css("background-size",""+getGameItemPixX(w)+"px "+getGameItemPixY(h)+"px");
+	}
 
 }
 
