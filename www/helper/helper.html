@@ -40,6 +40,21 @@ border-style:solid;
 border-width:1px;
 }
 
+td span{
+ font-size:8px;
+}
+
+#hlpansstr{
+ font-size:12px;
+ letter-spacing: 0.2em;
+ width:100%;
+ height:40px;
+ box-sizing:border-box;
+ wrap:off;
+ word-break:break-all;
+ white-space: normal;
+}
+
 .hlptag{
 position:absolute;
 }
@@ -49,8 +64,8 @@ background-color:yellow;
 }
 
 input{
-font-size:+1;
-letter-spacing: 0.5em;
+  font-size:12px;
+  letter-spacing: 0.3em;
 }
 
 .hlpcol{
@@ -230,7 +245,7 @@ function createWorld(){
   var x0=Number($('#hlpx0').val());
   var y0=Number($('#hlpy0').val());
   
-  var ansstr=$('#hlpansstr').val();
+  var ansstr=$('#hlpansstr').text();
   var anslen=ansstr.length;
   var i;
   var x=x0;
@@ -347,15 +362,22 @@ function createWorld(){
   }
 }
 
+function dispIndex(){
+
+    var index = $('#hlpansstr').get(0).selectionStart;
+    
+    $('.hlpindex').text("keyup cursor no="+(index+1));
+
+}
 </script>
 </head>
 <body onLoad="initHelper()">
-<h4>VIMRIO helper for creator ver1.0.0</h4><br/>
+<h4>VIMRIO helper for creator ver1.1.0</h4><br/>
 unit size=<input type="text" id="hlpunitsize" value="10" size="4"/>[%]<br/>
 start x=<input type="text" id="hlpx0" value="2" size="4"/>[unit]
  , y=<input type="text" id="hlpy0" value="5" size="4"/>[unit]<br/>
-(support character= h,j,k,l)<br/>
-answer string=<input type="text" id="hlpansstr" value="jlllllkkkhh"  size="80"/><br/>
+answer string (support character= h j k l )<span class="hlpindex"></span><br/>
+<textarea id="hlpansstr" onKeyUp="dispIndex()">jlllllkkkhh</textarea><br/>
 <input class="hlpcodebtn" type="button" onClick="createCode()" value="Create Code" /><span class="hlpwaitmsg" style="visibility:hidden">Please wait a minute.</span>
 <br/>
 <span class="hlpcol hlpcolstart">start</span><span class="hlpcol hlpcolroad">road</span><span class="hlpcol hlpcolgoal">goal</span><span class="hlpcol hlpcolwall">wall</span><span class="hlpcol hlpcolwarn">warning</span><br/>
