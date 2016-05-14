@@ -21,13 +21,13 @@ item.addAnimation({"y":5*u});
 item.addAnimation({"y":6*u});
 //5 w
 item.addAnimation({"x":5*u});
-//6 w
+//5 w
 item.addAnimation({"x":8*u});
-//7 k
+//5 k
 item.addAnimation({"y":5*u});
-//8 k
+//6 k
 item.addAnimation({"y":4*u});
-//9 l
+//7 l
 item.addAnimation({"x":9*u});
 
 //1 goal
