@@ -13,6 +13,7 @@ var ItemClass=function(){
 	this.backgroundImage="";
 	this.opacity=1.0;
 	this.zIndex=2;
+	this.wd="";
 	
 	this.animations=new Array();
 	
@@ -126,6 +127,14 @@ var ItemClass=function(){
 			return this.zIndex;
 	};
 	
+	this.setWd=function(wd){
+		this.wd=wd;
+	};
+	
+	this.getWd=function(){
+		return this.wd;
+	};
+
 	this.addAnimation=function(param){
 		this.animations.push(param);
 	};
@@ -133,7 +142,7 @@ var ItemClass=function(){
 
 	
 	this.addEmptyAnimation=function(){
-		this.animations.push({"dsp":true,"x":"","y":"","w":"","h":"","bgc":"","bdc":"","img":"","opc":"","z":""});
+		this.animations.push({"dsp":true,"x":"","y":"","w":"","h":"","bgc":"","bdc":"","img":"","opc":"","z":"","wd":""});
 	};
 	
 	this.setFrameStartIndex=function(frameStartIndex){
@@ -157,6 +166,7 @@ var ItemClass=function(){
 		this.setBackgroundImage(animation.img);
 		this.setOpacity(animation.opc);
 		this.setZIndex(animation.z);
+		this.setWd(animation.wd);
 
 	};
 }

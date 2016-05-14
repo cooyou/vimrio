@@ -50,7 +50,10 @@ var GameClass=function(){
 		for(i=0;i<items.length;i++){
 			var id=items[i].getId();
 			var name=items[i].getName();
-			str+='<div id="'+id+'" class="item '+name+'" ></div>';
+			var wd=items[i].getWd();
+			if(wd!="")
+			console.log("wd = "+wd);
+			str+='<div id="'+id+'" class="item '+name+'" ><p></p></div>';
 		}
 		
 		return str;
