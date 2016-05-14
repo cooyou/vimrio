@@ -109,11 +109,21 @@ p{
 }
 
 .item{
+
 	background-color: lightgrey;
 	border-style:solid;
 	border-color:gray;
 	background-size: auto auto;
 	z-index:2;
+}
+
+.item p{
+    font-size:50%;
+	position:absolute;
+	height:50%;
+	margin-top:50%;
+	width:100%;
+	text-align:center;
 }
 
 .keystring{

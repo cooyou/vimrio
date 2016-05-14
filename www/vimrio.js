@@ -216,6 +216,7 @@ function setItem(item){
 	y=item.getY();
 	w=item.getW();
 	h=item.getH();
+	
 
 	var backgroundColor=item.getBackgroundColor();
 	var borderColor=item.getBorderColor();
@@ -225,6 +226,8 @@ function setItem(item){
 	var display=item.getDisplay();
 	
 	var zIndex=item.getZIndex();
+	
+	var wd=item.getWd();
 
 	if(typeof(x)!=="undefined" && x!==""){
 		$(id).css("left",""+getGameItemPixX(x)+"px");
@@ -260,6 +263,11 @@ function setItem(item){
 	}
 	if(typeof(w)!=="undefined" && w!=="" && typeof(h)!=="undefined" && h!==""){
 		$(id).css("background-size",""+getGameItemPixX(w)+"px "+getGameItemPixY(h)+"px");
+		$(id).css("font-size",""+getGameItemPixX(w)*0.7+"px");
+	}
+	
+	if(typeof(wd)!=="undefined" && wd!==""){
+		$("p",id).text(wd);
 	}
 
 }

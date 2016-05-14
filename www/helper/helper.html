@@ -89,6 +89,14 @@ input{
 	background-color:green;
 }
 
+.hlpcolwd1{
+	border-color:black;
+	background-color:white
+}
+
+.hlpcolwd2{
+	background-color:gray
+}
 .hlpcolwall{
 	background-color:Peru
 }
@@ -149,7 +157,7 @@ function drawBlock(no,name,x,y,u,color){
 		for(ix=0;ix<u;ix++){
 			var prename=$("#hlptbl tr:eq(" + (yu+iy) + ") td:eq(" + (xu+ix) + ")" ).attr("name");
 			var col=color;
-			if(prename!=""){
+			if(prename===name){
 				col="yellow";
 			}
 			if(iy==0 && ix==0){
@@ -167,50 +175,91 @@ function drawBlock(no,name,x,y,u,color){
 	}
 }
 
-function isWall(x,y,u,vimrioname){
+function isWall(x,y,u){
 	var xu,yu;
 	xu=x*u;
 	yu=y*u;
-	if(xu>=0 && xu<100 && yu>=0 && yu<100 && $("#hlptbl tr:eq(" + (yu) + ") td:eq(" + (xu) + ")" ).attr("name")==vimrioname){
+	if(xu>=0 && xu<100 && yu>=0 && yu<100 && $("#hlptbl tr:eq(" + (yu) + ") td:eq(" + (xu) + ")" ).attr("name")!=""){
 		return false;
 	}
-	if(xu-u>=0 && xu-u<100 && yu-u>=0 && yu-u<100 && $("#hlptbl tr:eq(" + (yu-u) + ") td:eq(" + (xu-u) + ")" ).attr("name")==vimrioname){
+	if(xu-u>=0 && xu-u<100 && yu-u>=0 && yu-u<100 && $("#hlptbl tr:eq(" + (yu-u) + ") td:eq(" + (xu-u) + ")" ).attr("name")!=""){
 		return true;
 	}
-	if(xu>=0 && xu<100 && yu-u>=0 && yu-u<100 && $("#hlptbl tr:eq(" + (yu-u) + ") td:eq(" + (xu) + ")" ).attr("name")==vimrioname){
+	if(xu>=0 && xu<100 && yu-u>=0 && yu-u<100 && $("#hlptbl tr:eq(" + (yu-u) + ") td:eq(" + (xu) + ")" ).attr("name")!=""){
 		return true;
 	}
-	if(xu+u>=0 && xu+u<100 && yu-u>=0 && yu-u<100 && $("#hlptbl tr:eq(" + (yu-u) + ") td:eq(" + (xu+u) + ")" ).attr("name")==vimrioname){
+	if(xu+u>=0 && xu+u<100 && yu-u>=0 && yu-u<100 && $("#hlptbl tr:eq(" + (yu-u) + ") td:eq(" + (xu+u) + ")" ).attr("name")!=""){
 		return true;
 	}
-	if(xu-u>=0 && xu-u<100 && yu>=0 && yu<100 && $("#hlptbl tr:eq(" + (yu) + ") td:eq(" + (xu-u) + ")" ).attr("name")==vimrioname){
+	if(xu-u>=0 && xu-u<100 && yu>=0 && yu<100 && $("#hlptbl tr:eq(" + (yu) + ") td:eq(" + (xu-u) + ")" ).attr("name")!=""){
 		return true;
 	}
-	if(xu+u>=0 && xu+u<100 && yu>=0 && yu<100 && $("#hlptbl tr:eq(" + (yu) + ") td:eq(" + (xu+u) + ")" ).attr("name")==vimrioname){
+	if(xu+u>=0 && xu+u<100 && yu>=0 && yu<100 && $("#hlptbl tr:eq(" + (yu) + ") td:eq(" + (xu+u) + ")" ).attr("name")!=""){
 		return true;
 	}
-	if(xu-u>=0 && xu-u<100 && yu+u>=0 && yu+u<100 && $("#hlptbl tr:eq(" + (yu+u) + ") td:eq(" + (xu-u) + ")" ).attr("name")==vimrioname){
+	if(xu-u>=0 && xu-u<100 && yu+u>=0 && yu+u<100 && $("#hlptbl tr:eq(" + (yu+u) + ") td:eq(" + (xu-u) + ")" ).attr("name")!=""){
 		return true;
 	}
-	if(xu>=0 && xu<100 && yu+u>=0 && yu+u<100 && $("#hlptbl tr:eq(" + (yu+u) + ") td:eq(" + (xu) + ")" ).attr("name")==vimrioname){
+	if(xu>=0 && xu<100 && yu+u>=0 && yu+u<100 && $("#hlptbl tr:eq(" + (yu+u) + ") td:eq(" + (xu) + ")" ).attr("name")!=""){
 		return true;
 	}
-	if(xu+u>=0 && xu+u<100 && yu+u>=0 && yu+u<100 && $("#hlptbl tr:eq(" + (yu+u) + ") td:eq(" + (xu+u) + ")" ).attr("name")==vimrioname){
+	if(xu+u>=0 && xu+u<100 && yu+u>=0 && yu+u<100 && $("#hlptbl tr:eq(" + (yu+u) + ") td:eq(" + (xu+u) + ")" ).attr("name")!=""){
 		return true;
 	}
 
 	return false;
 }
 
-function drawWall(wallname,u,vimrioname){
+function drawWordString(wordname,u,ary){
+	var code="";
+	var j;
+	for(j=0;j<ary.length;j++){
+		var info=ary[j];
+		
+		var x,y,w,h,line,wdlen;
+		x=info[0];
+		y=info[1];
+		w=info[2];
+		h=info[3];
+		line=info[4];
+		wdlen=info[5];
+		
+		var linelen=line.length;
+		var i;
+		for(i=0;i<linelen;i++){
+		
+			var nostr="02";
+			var col1="lightgray";
+			var col2="gray";
+			if(i==0 || i==wdlen){
+				nostr="01";
+				col1="white";
+				col2="white";
+			}
+			var wd=line.substr(i,1);
+			
+			code+="//word \""+line+"\" ["+wd+"] "+(i+1)+"\n";
+			code+="item=stage.createNewItem();\n";
+			code+="item.setName(\""+wordname+"\");\n";
+			code+="item.addAnimation({\"dsp\":true,\"x\":"+(x+i)+"*u,\"y\":"+y+"*u,\"w\":u,\"h\":u,\"img\":\"word"+nostr+".png\",\"bgc\":\"transparent\",\"bdc\":\""+col1+"\",\"wd\":\""+wd+"\"});\n";
+			code+="stage.addItem(item);\n";
+			code+="\n";
+			
+			drawBlock(i+1,wordname,x+i,y,u,col2);
+		}
+	}
+	return code;
+}
+
+function drawWall(wallname,u){
 	var code="";
 	var x,y;
 	var ary=[];
 	for(y=0;y*u<100;y++){
 		for(x=0;x*u<100;x++){
-			if(isWall(x,y,u,vimrioname)){
+			if(isWall(x,y,u)){
 				ary.push([x,y]);
-				code+="//"+ary.length+"\n";
+				code+="//wall "+ary.length+"\n";
 				code+="item=stage.createNewItem();\n";
 				code+="item.setName(\""+wallname+"\");\n";
 				code+="item.addAnimation({\"dsp\":true,\"x\":"+x+"*u,\"y\":"+y+"*u,\"w\":u,\"h\":u,\"img\":\"brick01.png\",\"bgc\":\"BlanchedAlmond\",\"bdc\":\"peru\"});\n";
@@ -236,6 +285,63 @@ function createCode(){
 
 }
 
+function getWordLength(str,i){
+	var len=0;
+	var i2=str.indexOf(" ",i+1);
+	if(i2>0){
+		len=i2-i;
+	}
+	else{
+	  len=str.length;
+	}
+	//console.log("wordlen="+len);
+	return len;
+}
+
+function getLineString(str,i){
+	var d=str.substr(i,1);
+	//console.log("d="+d);
+	var i2=str.indexOf(d,i+1);
+	if(i2<0){
+	   i2=i+1;
+	}
+	
+	var linelen=i2-i-1;
+	var line=str.substr(i+1,linelen);
+	//console.log("line="+line+" len="+i2);
+	return line
+}
+
+function getAnsString(str){
+  var ansstr="";
+  var i;
+
+  for(i=0;i<str.length;i++){
+
+    var c=str.substr(i,1);
+    ansstr+=c;
+
+    
+    if(c==='w'){
+      i++;
+      var d=str.substr(i,1);
+      var j;
+      i++;
+      c="";
+      for(;i<str.length;i++){
+        c=str.substr(i,1);
+        if(c===d){
+          break;
+         }
+      }
+ 
+    }
+    
+  }
+  return ansstr;
+
+}
+
 function createWorld(){
   $("#hlptbl tr td").attr("name","");
   $("#hlptbl tr td").css("background-color","lightgray");
@@ -245,7 +351,8 @@ function createWorld(){
   var x0=Number($('#hlpx0').val());
   var y0=Number($('#hlpy0').val());
   
-  var ansstr=$('#hlpansstr').text();
+  var ansstr=$('#hlpansstr').val();
+
   var anslen=ansstr.length;
   var i;
   var x=x0;
@@ -253,6 +360,9 @@ function createWorld(){
   var vimrioname="vimrio";
   var goalname="goal";
   var wallname="wall";
+  var wordname="word";
+  
+  var wordstringary=new Array();
   
   var code="//Created by VIMRIO helper\n\n";
   code+="//Please rename XXX.\n";
@@ -260,7 +370,9 @@ function createWorld(){
   code+="function initStageXXX(stage){\n\n";
   code+="var item;\n";
   code+="var u="+u+";\n";
-  code+="stage.setAnsStr(\""+ansstr+"\");\n";
+  var ans=getAnsString(ansstr);
+
+  code+="stage.setAnsStr(\""+ans+"\");\n";
   code+="item=stage.createNewItem();\n";
   code+="item.setName(\""+vimrioname+"\");\n";
   code+="item.setFrameStartIndex(0);\n";
@@ -269,11 +381,13 @@ function createWorld(){
   code+="item.addAnimation({\"dsp\":true,\"x\":"+x+"*u,\"y\":"+y+"*u,\"w\":u,\"h\":u,\"bgc\":\"transparent\",\"bdc\":\"blue\",\"img\":\""+vimrioname+"01.png\",\"z\":5,\"opc\":1.0});\n";
   var rngwarnflag=false;
   var charwarnflag=false;
+  var roadno=1;
   if(x*u<0 || x*u>=100 || y*u<0 || y*u>=100){
   		rngwarnflag=true;
   }
   else{
-		drawBlock(1,vimrioname,x,y,u,"cyan");
+		drawBlock(roadno,vimrioname,x,y,u,"cyan");
+		roadno++;
 		$('#hlptbl tr:eq('+y*u+') td:eq('+x*u+')').html("<span class='hlptag'>1 start</span>");
   }
   
@@ -285,7 +399,7 @@ function createWorld(){
     switch(c){
     	case 'h':	if((x-1)*u>=0 && (x-1)*u<100){
     					x-=1;
-    					code+="//"+(i+2)+" h\n";
+    					code+="//"+roadno+" h\n";
     					code+="item.addAnimation({\"x\":"+x+"*u});\n";
     				}
     				else{
@@ -294,7 +408,7 @@ function createWorld(){
     				break;
     	case 'l':	if((x+1)*u>=0 && (x+1)*u<100){
     					x+=1;
-    					code+="//"+(i+2)+" l\n";
+    					code+="//"+roadno+" l\n";
     					code+="item.addAnimation({\"x\":"+x+"*u});\n";
     				}
     				else{
@@ -303,7 +417,7 @@ function createWorld(){
     				break;
     	case 'j':	if((y+1)*u>=0 && (y+1)*u<100){
     					y+=1;
-    					code+="//"+(i+2)+" j\n";
+    					code+="//"+roadno+" j\n";
     					code+="item.addAnimation({\"y\":"+y+"*u});\n";
     				}
     				else{
@@ -312,23 +426,44 @@ function createWorld(){
     				break;
     	case 'k':	if((y-1)*u>=0 && (y-1)*u<100){
     					y-=1;
-    					code+="//"+(i+2)+" k\n";
+    					code+="//"+roadno+" k\n";
     					code+="item.addAnimation({\"y\":"+y+"*u});\n";
     				}
     				else{
     					rngwarnflag=true;
     				}
     				break;
+    	
+    	case 'w':	var wdlen=getWordLength(ansstr,i+1);
+    	
+    				var xtmp=x;
+    				if((x+wdlen)*u>=0 && (x+wdlen)*u<100){
+    					x=x+wdlen;
+    					code+="//"+roadno+" w\n";
+    					code+="item.addAnimation({\"x\":"+x+"*u});\n";
+    				}
+    				else{
+    					rngwarnflag=true;
+    				}
+    				var linestr=getLineString(ansstr,i+1);
+    				i+=linestr.length+1;
+    				wordstringary.push([xtmp,y,linestr.length,1,linestr,wdlen]);
+    				break;
+    				
     	default : charwarnflag=true;
     				break;
     }
-    if(i==anslen-1){
-    	drawBlock(1,vimrioname,x,y,u,"green");
-    	$('#hlptbl tr:eq('+y*u+') td:eq('+x*u+')').html("<span class='hlptag'>1 goal</span>");
-    }
-    else{
-    	drawBlock(i+2,vimrioname,x,y,u,"LawnGreen");
-    }
+    if(c!="w"){
+	    if(i==anslen-1){
+	    	drawBlock(1,vimrioname,x,y,u,"green");
+	    	$('#hlptbl tr:eq('+y*u+') td:eq('+x*u+')').html("<span class='hlptag'>1 goal</span>");
+	    }
+	    else{
+	    	drawBlock(roadno,vimrioname,x,y,u,"LawnGreen");
+	    	roadno++;
+	    }
+	}
+
     
   }
   
@@ -340,9 +475,14 @@ function createWorld(){
   code+="stage.addItem(item);\n";
   code+="\n";
   
-  
-  code+=drawWall(wallname,u,vimrioname);
+  code+=drawWordString(wordname,u,wordstringary);
   code+="\n";
+  
+  code+=drawWall(wallname,u);
+  code+="\n";
+  
+
+  
   code+="}\n";
   $('#hlpcodestr').val(code);
   $('.hlpcodebtn').attr("disabled",false);
@@ -372,15 +512,15 @@ function dispIndex(){
 </script>
 </head>
 <body onLoad="initHelper()">
-<h4>VIMRIO helper for creator ver1.1.0</h4><br/>
+<h4>VIMRIO helper for creator ver1.2.0</h4><br/>
 unit size=<input type="text" id="hlpunitsize" value="10" size="4"/>[%]<br/>
-start x=<input type="text" id="hlpx0" value="2" size="4"/>[unit]
- , y=<input type="text" id="hlpy0" value="5" size="4"/>[unit]<br/>
-answer string (support character= h j k l )<span class="hlpindex"></span><br/>
-<textarea id="hlpansstr" onKeyUp="dispIndex()">jlllllkkkhh</textarea><br/>
+start x=<input type="text" id="hlpx0" value="3" size="4"/>[unit]
+ , y=<input type="text" id="hlpy0" value="4" size="4"/>[unit]<br/>
+move and word string (support character= h j k l w ) example w --> w"test abc"<span class="hlpindex"></span><br/>
+<textarea id="hlpansstr" onKeyUp="dispIndex()">hjjw"ab "w"cd ef"kkl</textarea><br/>
 <input class="hlpcodebtn" type="button" onClick="createCode()" value="Create Code" /><span class="hlpwaitmsg" style="visibility:hidden">Please wait a minute.</span>
 <br/>
-<span class="hlpcol hlpcolstart">start</span><span class="hlpcol hlpcolroad">road</span><span class="hlpcol hlpcolgoal">goal</span><span class="hlpcol hlpcolwall">wall</span><span class="hlpcol hlpcolwarn">warning</span><br/>
+<span class="hlpcol hlpcolstart">start</span><span class="hlpcol hlpcolroad">road</span><span class="hlpcol hlpcolgoal">goal</span><span class="hlpcol hlpcolwd1">word</span><span class="hlpcol hlpcolwd2">word</span><span class="hlpcol hlpcolwall">wall</span><span class="hlpcol hlpcolwarn">warning</span><br/>
 <span class="hlprngwarn">warning draw range</span><span class="hlpcharwarn">warning not recognized character</span><br/>
 <table id="hlptbl">
 </table>
