@@ -16,7 +16,7 @@ var keymapindex=0;
 var initchars=["$","^"];
 
 $(function() {
-	console.log("jquery init");
+	//console.log("jquery init");
 	$.getScript("itemclass.js", function(){
 		$.getScript("stageclass.js", function(){
 			$.getScript("gameclass.js", function(){
@@ -43,7 +43,7 @@ function showAns(success){
 }
 
 function jqInit(){
-	console.log("jqInit");
+	//console.log("jqInit");
 
 	width=$(window).width();
 	height=$(window).height();
@@ -100,11 +100,11 @@ function jqInit(){
 			switch(e.keyCode){
 	
 				 case 32: // space
-					 console.log("space");
+					 //console.log("space");
 				 break;
 				 
 				 case 13: // enter
-					 console.log("enter");
+					 //console.log("enter");
 					 if(isfinish){
 						 nextStage();
 						 return ;
@@ -164,21 +164,21 @@ function getGameItemPixY(per){
 function loadScriptAjax(fname,i){
 	var nostr=('00'+(i+1)).slice(-3);
 	var fullfname=(fname+nostr)+".js";
-	console.log("load "+fullfname);
+	//console.log("load "+fullfname);
 	$.ajax({
 		type: 'GET',
 		dataType: 'script',
 		url:fullfname,
 		success: function(data){
 			i++;
-			console.log("stagei="+i);
+			//console.log("stagei="+i);
 			loadScriptAjax(fname,i);
 		},
 		error: function(){
 
             stagenum=i;
             
-            console.log("stagenum="+stagenum);
+            //console.log("stagenum="+stagenum);
    			stageIndex=0;
 			initStages();
 		}
@@ -197,7 +197,7 @@ function initAll(){
     $("#area").css("height",""+height+"px");
     $("#area").css("left",""+offsetleft+"px");
     $("#area").css("top",""+offsettop+"px");
-    console.log("offsetleft:"+offsetleft+" offsettop:"+offsettop);
+    //console.log("offsetleft:"+offsetleft+" offsettop:"+offsettop);
 	var whlt=
 	{	 ".header":[width*1.0,height*0.05,0,0]
 			,".ttl":[width*1.0*1.0*0.2,height*0.05*0.8,width*1.0*0.3,height*0.05*0.05]
@@ -340,7 +340,7 @@ function createCmbBox(num){
 }
 
 function initStages(){
-	console.log("initStages");
+	//console.log("initStages");
 	if(game.getStageNum()==0){
 		game.createStages(stagenum);
 		createCmbBox(stagenum);
@@ -459,6 +459,6 @@ function initBody(){
 		setTimeout(initBody,1000);
 		return;
 	}
-	console.log("initBody");
+	//console.log("initBody");
 	initAll();
 }

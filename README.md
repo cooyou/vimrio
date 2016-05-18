@@ -1,15 +1,15 @@
 # VIMRIO
 vi editor practice game  
-VIMRIO ver1.7.0 ...stage010   
+VIMRIO ver1.8.0 ...stage011   
 [Start Game](http://cooyou.github.io/vimrio/www/vimrio.html)  
-[VIMRIO helper ver1.4.0](http://cooyou.github.io/vimrio/www/helper/helper.html)  
+[VIMRIO helper ver1.4.1](http://cooyou.github.io/vimrio/www/helper/helper.html)  
 [Home Page](http://cooyou.github.io/vimrio/index.html)  
 
 Created by cooyou.  
 info@cooyou.org  
 
 ROAD MAP:    
-stage11..........stage20..............................................................stage999  
+stage12..........stage20..............................................................stage999  
   
 Please give me some stages which anyone created.  
 How to:  
