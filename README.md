@@ -22,5 +22,10 @@ TIP:
 For windows user (or mono user for linux , mac)  
 www/tanjunwsvmono.exe  
 This exe file is a web server.  
-You run exe as administrator, you can use http://localhost:8080/vimrio.html on browser easilly.  
-cat8.exe is UTF8 text dump tool on Power Shell.   
+You run exe as administrator, you can use localhost on browser easilly.  
+vimrio -->  http://localhost:8080/vimrio.html  
+helper -->  http://localhost:8080/helper/helper.html  
+(Linux or Mac) mono tanjunwsvmono.exe  
+
+cat8.exe is UTF8 text dump tool on Windows PowerShell.  
+ 
