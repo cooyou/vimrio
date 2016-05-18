@@ -69,6 +69,11 @@ function jqInit(){
 		var stage=game.getStage();
 
 		var c=String.fromCharCode(e.keyCode);
+		//console.log("c=["+c.charCodeAt(0)+"] len="+c.length+" keycode="+e.keyCode);
+		var code=c.charCodeAt(0);
+		if(code==16 || code==17){
+			return;
+		}
 		var shift=false;
 		var ctrl=false;
 		if(e.ctrlKey){
