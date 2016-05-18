@@ -10,7 +10,6 @@ var errorcnt=0;
 var stageIndex=0;
 
 var initialize=false;
-var keytemp=[];
 var keymap=[];
 var keymapindex=0;
 var initchars=["$","^"];
@@ -69,7 +68,7 @@ function jqInit(){
 		var stage=game.getStage();
 
 		var c=String.fromCharCode(e.keyCode);
-		//console.log("c=["+c.charCodeAt(0)+"] len="+c.length+" keycode="+e.keyCode);
+		//console.log("code=["+c.charCodeAt(0)+"] c="+c+" shift="+e.shiftKey+" ctrl="+e.ctrlKey+" len="+c.length+" keycode="+e.keyCode);
 		var code=c.charCodeAt(0);
 		if(code==16 || code==17){
 			return;
@@ -88,7 +87,8 @@ function jqInit(){
 		}
 		
 		if(initialize==false){
-			keytemp=[c,shift,ctrl];
+		  
+			initKeyDown(e.keyCode,c,shift,ctrl);
 		}
 		else{
 			//console.log("type="+c);
@@ -124,17 +124,11 @@ function jqInit(){
     });
 }    
 
+function initKeyDisp(){
+	keymapindex++;
+	$("#ktxt").text(initchars[keymapindex]);
+	$("#keytxt").text("");
 
-function textKeyUp(){
-	var str=$('#keytxt').val();
-	//console.log(str);
-	
-	if(initchars[keymapindex]==str){
-		keymap[str]=keytemp;
-		keymapindex++;
-		$("#ktxt").text(initchars[keymapindex]);
-		$("#keytxt").val("");
-	}
 	
 	if(keymapindex==initchars.length){
 		$("#ktxt").css("display","none");
@@ -146,6 +140,14 @@ function textKeyUp(){
 		  });
 		
 	}
+}
+
+function initKeyDown(code,c,shift,ctrl){
+		 $('#keytxt').html("code:"+code+"<br/>shift:"+shift+"<br/>ctrl:"+ctrl);
+		var keytemp=[c,shift,ctrl];
+		keymap[initchars[keymapindex]]=keytemp;
+		setTimeout("initKeyDisp()",300);
+
 }
 
 function getGameItemPixX(per){
