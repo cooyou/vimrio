@@ -270,7 +270,7 @@ function drawBackWord(wordname,x,y,w,h,u,line,wdlen){
 		}
 		return code;
 }
-function drawString(wordname,x,y,w,h,u,line){
+function drawString(wordname,x,y,w,h,u,line,headindex){
 		var code="";
 		var linelen=line.length;
 		var i;
@@ -279,11 +279,10 @@ function drawString(wordname,x,y,w,h,u,line){
 			var nostr="03";
 			var col1="lightgray";
 			var col2="gray";
-
-			if(i==0 || i==linelen-1){
-				  nostr="01";
-				  col1="white";
-				  col2="white";
+			if(i==headindex){
+					  nostr="01";
+					  col1="white";
+					  col2="white";
 			}
 	
 			var wd=line.substr(i,1);
@@ -325,7 +324,7 @@ function drawWordString(wordname,u,ary){
 						break;
 			case '$':
 			case '^':
-						code+=drawString(wordname,x,y,w,h,u,line);
+						code+=drawString(wordname,x,y,w,h,u,line,wdlen);
 						break;
 
 		}
@@ -436,6 +435,17 @@ function getAnsString(str){
   }
   return ansstr;
 
+}
+
+function getLineHeadIndex(str){
+  var i=0;
+
+  for(i=0;i<str.length;i++){
+    if(str[i]!=" "){
+      break;
+    }
+  }
+  return i;
 }
 
 function createWorld(){
@@ -557,10 +567,11 @@ function createWorld(){
     				break;
     	case '$':
 					var linestr=getLineString(ansstr,i+1);
+					var headindex=linestr.length-1;
 					var xtmp=x;
 					if((x+linestr.length-1)*u>=0 && (x+linestr.length-1)*u<100){
 						x=x+linestr.length-1;
-						console.log(x);
+						//console.log(x);
 						code+="//"+roadno+"$\n";
 						code+="item.addAnimation({\"x\":"+x+"*u});\n";
 					}
@@ -568,14 +579,18 @@ function createWorld(){
 						rngwarning=true;
 					}
 					i+=linestr.length+2;
-					wordstringary.push(["$",xtmp,y,linestr.length,1,linestr,0]);
+					
+					wordstringary.push(["$",xtmp,y,linestr.length,1,linestr,headindex]);
 					roadno++;
 					break;
     	case '^':
 					var linestr=getLineString(ansstr,i+1);
+		
+					var headindex=getLineHeadIndex(linestr);
+					//console.log(headindex);
 					var xtmp=x;
-					if((x-linestr.length+1)*u>=0 && (x-linestr.length+1)*u<100){
-						x=x-linestr.length+1;
+					if((x-linestr.length+1+headindex)*u>=0 && (x-linestr.length+1+headindex)*u<100){
+						x=x-linestr.length+1+headindex;
 						code+="//"+roadno+"$\n";
 						code+="item.addAnimation({\"x\":"+x+"*u});\n";
 					}
@@ -583,7 +598,8 @@ function createWorld(){
 						rngwarning=true;
 					}
 					i+=linestr.length+2;
-					wordstringary.push(["^",xtmp-linestr.length+1,y,linestr.length,1,linestr,0]);
+					
+					wordstringary.push(["^",xtmp-linestr.length+1,y,linestr.length,1,linestr,headindex]);
 					roadno++;
 					break;
     	case 'w':	var linestr=getLineString(ansstr,i+1);
@@ -727,7 +743,7 @@ move and word string (support character= h j k l w b $ ^ )<br/>
 w --> w"xx "w"yy zz"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b --> b"zz"b"xx yy "<br/>
 $ --> $"aa bb cc"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^ --> ^"aa bb cc"</p><br/>
 <span class="hlpindex"></span><br/>
-<textarea id="hlpansstr" onKeyUp="dispIndex()">hhhkkw"word jump"jjlljjb"yyy"b"back "jj$"move tail"jljj^"  mv head"j</textarea><br/>
+<textarea id="hlpansstr" onKeyUp="dispIndex()">hhhkkw"word jump"jjlljjb"yyy"b"back "jj$"move tail"jljj^"  mv head"j</textarea><br/>
 <input class="hlpcodebtn" type="button" onClick="createCode()" value="Create Code" /><span class="hlpwaitmsg" style="visibility:hidden">Please wait a minute.</span>
 <br/>
 <span class="hlpcol hlpcolstart">start</span><span class="hlpcol hlpcolroad">road</span><span class="hlpcol hlpcolgoal">goal</span><span class="hlpcol hlpcolwd1">word</span><span class="hlpcol hlpcolwd2">word</span><span class="hlpcol hlpcolwall">wall</span><span class="hlpcol hlpcolwarn">warning</span><br/>

@@ -24,7 +24,7 @@ var u=8;
 //wd: character of word
 
 //Answer String
-//helper original string=hhhkkw"word jump"jjlljjb"yyy"b"back "jj$"move tail"jljj^"  mv head"j
+//helper original string=hhhkkw"word jump"jjlljjb"yyy"b"back "jj$"move tail"jljj^"  mv head"j
 stage.setAnsStr("hhhkkwjjlljjbbjj$jljj^j");
 item=stage.createNewItem();
 
@@ -83,14 +83,14 @@ item.addAnimation({"y":8*u});
 //22 j
 item.addAnimation({"y":9*u});
 //23$
-item.addAnimation({"x":2*u});
+item.addAnimation({"x":4*u});
 //24 j
 item.addAnimation({"y":10*u});
 
 //1 goal
 item=stage.createNewItem();
 item.setName("goal");
-item.addAnimation({"dsp":true,"x":2*u,"y":10*u,"w":u,"h":u,"img":"goal01.png","bgc":"yellow","bdc":"yellow"});
+item.addAnimation({"dsp":true,"x":4*u,"y":10*u,"w":u,"h":u,"img":"goal01.png","bgc":"yellow","bdc":"yellow"});
 stage.addItem(item);
 
 //word "word jump" [w] 1
@@ -198,7 +198,7 @@ stage.addItem(item);
 //word "move tail" [m] 1
 item=stage.createNewItem();
 item.setName("word");
-item.addAnimation({"dsp":true,"x":1*u,"y":6*u,"w":u,"h":u,"img":"word01.png","bgc":"transparent","bdc":"white","wd":"m"});
+item.addAnimation({"dsp":true,"x":1*u,"y":6*u,"w":u,"h":u,"img":"word03.png","bgc":"transparent","bdc":"lightgray","wd":"m"});
 stage.addItem(item);
 
 //word "move tail" [o] 2
@@ -249,58 +249,58 @@ item.setName("word");
 item.addAnimation({"dsp":true,"x":9*u,"y":6*u,"w":u,"h":u,"img":"word01.png","bgc":"transparent","bdc":"white","wd":"l"});
 stage.addItem(item);
 
-//word "  mv head" [ ] 1
+//word "  mv head" [ ] 1
 item=stage.createNewItem();
 item.setName("word");
-item.addAnimation({"dsp":true,"x":2*u,"y":9*u,"w":u,"h":u,"img":"word01.png","bgc":"transparent","bdc":"white","wd":" "});
+item.addAnimation({"dsp":true,"x":2*u,"y":9*u,"w":u,"h":u,"img":"word03.png","bgc":"transparent","bdc":"lightgray","wd":" "});
 stage.addItem(item);
 
-//word "  mv head" [ ] 2
+//word "  mv head" [ ] 2
 item=stage.createNewItem();
 item.setName("word");
-item.addAnimation({"dsp":true,"x":3*u,"y":9*u,"w":u,"h":u,"img":"word03.png","bgc":"transparent","bdc":"lightgray","wd":" "});
+item.addAnimation({"dsp":true,"x":3*u,"y":9*u,"w":u,"h":u,"img":"word03.png","bgc":"transparent","bdc":"lightgray","wd":" "});
 stage.addItem(item);
 
-//word "  mv head" [m] 3
+//word "  mv head" [m] 3
 item=stage.createNewItem();
 item.setName("word");
-item.addAnimation({"dsp":true,"x":4*u,"y":9*u,"w":u,"h":u,"img":"word03.png","bgc":"transparent","bdc":"lightgray","wd":"m"});
+item.addAnimation({"dsp":true,"x":4*u,"y":9*u,"w":u,"h":u,"img":"word01.png","bgc":"transparent","bdc":"white","wd":"m"});
 stage.addItem(item);
 
-//word "  mv head" [v] 4
+//word "  mv head" [v] 4
 item=stage.createNewItem();
 item.setName("word");
 item.addAnimation({"dsp":true,"x":5*u,"y":9*u,"w":u,"h":u,"img":"word03.png","bgc":"transparent","bdc":"lightgray","wd":"v"});
 stage.addItem(item);
 
-//word "  mv head" [ ] 5
+//word "  mv head" [ ] 5
 item=stage.createNewItem();
 item.setName("word");
 item.addAnimation({"dsp":true,"x":6*u,"y":9*u,"w":u,"h":u,"img":"word03.png","bgc":"transparent","bdc":"lightgray","wd":" "});
 stage.addItem(item);
 
-//word "  mv head" [h] 6
+//word "  mv head" [h] 6
 item=stage.createNewItem();
 item.setName("word");
 item.addAnimation({"dsp":true,"x":7*u,"y":9*u,"w":u,"h":u,"img":"word03.png","bgc":"transparent","bdc":"lightgray","wd":"h"});
 stage.addItem(item);
 
-//word "  mv head" [e] 7
+//word "  mv head" [e] 7
 item=stage.createNewItem();
 item.setName("word");
 item.addAnimation({"dsp":true,"x":8*u,"y":9*u,"w":u,"h":u,"img":"word03.png","bgc":"transparent","bdc":"lightgray","wd":"e"});
 stage.addItem(item);
 
-//word "  mv head" [a] 8
+//word "  mv head" [a] 8
 item=stage.createNewItem();
 item.setName("word");
 item.addAnimation({"dsp":true,"x":9*u,"y":9*u,"w":u,"h":u,"img":"word03.png","bgc":"transparent","bdc":"lightgray","wd":"a"});
 stage.addItem(item);
 
-//word "  mv head" [d] 9
+//word "  mv head" [d] 9
 item=stage.createNewItem();
 item.setName("word");
-item.addAnimation({"dsp":true,"x":10*u,"y":9*u,"w":u,"h":u,"img":"word01.png","bgc":"transparent","bdc":"white","wd":"d"});
+item.addAnimation({"dsp":true,"x":10*u,"y":9*u,"w":u,"h":u,"img":"word03.png","bgc":"transparent","bdc":"lightgray","wd":"d"});
 stage.addItem(item);
 
 
@@ -673,13 +673,13 @@ stage.addItem(item);
 //wall 62
 item=stage.createNewItem();
 item.setName("wall");
-item.addAnimation({"dsp":true,"x":3*u,"y":10*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
+item.addAnimation({"dsp":true,"x":2*u,"y":10*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
 //wall 63
 item=stage.createNewItem();
 item.setName("wall");
-item.addAnimation({"dsp":true,"x":4*u,"y":10*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
+item.addAnimation({"dsp":true,"x":3*u,"y":10*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
 //wall 64
@@ -727,19 +727,19 @@ stage.addItem(item);
 //wall 71
 item=stage.createNewItem();
 item.setName("wall");
-item.addAnimation({"dsp":true,"x":1*u,"y":11*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
+item.addAnimation({"dsp":true,"x":3*u,"y":11*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
 //wall 72
 item=stage.createNewItem();
 item.setName("wall");
-item.addAnimation({"dsp":true,"x":2*u,"y":11*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
+item.addAnimation({"dsp":true,"x":4*u,"y":11*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
 //wall 73
 item=stage.createNewItem();
 item.setName("wall");
-item.addAnimation({"dsp":true,"x":3*u,"y":11*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
+item.addAnimation({"dsp":true,"x":5*u,"y":11*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
 
