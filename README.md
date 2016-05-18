@@ -1,6 +1,6 @@
 # VIMRIO
 vi editor practice game  
-VIMRIO ver1.8.0 ...stage011   
+VIMRIO ver1.8.1 ...stage011   
 [Start Game](http://cooyou.github.io/vimrio/www/vimrio.html)  
 [VIMRIO helper ver1.4.1](http://cooyou.github.io/vimrio/www/helper/helper.html)  
 [Home Page](http://cooyou.github.io/vimrio/index.html)  
