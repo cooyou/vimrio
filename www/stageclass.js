@@ -35,12 +35,31 @@ var StageClass=function(){
 		return this.frameIndex;
 	};
 
-	this.typeKeyboard=function(c){
+	this.typeKeyboard=function(c,shift,ctrl){
 		var ansc=this.ansStr.substr(this.frameIndex,1);
+		var hit=false;
+		if(typeof keymap[ansc] !== "undefined" ){
+			
+			var map=keymap[ansc];
+			var ans_c=map[0];
+			var ans_shift=map[1];
+			var ans_ctrl=map[2];
+			//console.log("ans_c="+ans_c+" ans_shift="+ans_shift+" ans_ctrl="+ans_ctrl+" c="+c+" shift="+shift+" ctrl="+ctrl);
+			if(ans_c==c && ans_shift==shift && ans_ctrl==ctrl){
+				//console.log("hit initchars");
+				hit=true;
+			}
+		}
+		else{
+			if(ansc==c){
+				//console.log("hit char");
+				hit=true;
+			}
+		}
 
-		if(ansc===c){
+		if(hit){
 			//console.log("correct");
-			this.typeStr+=c;
+			this.typeStr+=ansc;
 			this.frameIndex++;
 			this.setFrame();
 			return true;

@@ -170,3 +170,40 @@ p{
 	z-index:40;
 	display:none;
 }
+
+#initpanel{
+	padding-top:50px;
+	opacity:0.9; 
+	width:300px; 
+	height:300px;
+	margin:auto;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	z-index:50;
+	position:absolute;
+	background-color:white;
+	font-size:14px;
+	display:block;
+}
+#ktxt{
+	font-size:20px;
+	display:block;
+}
+
+#initdone{
+	color:blue;
+	font-size:24px;
+	display:none;
+}
+
+#keytxt{
+	background-color:white;
+	border-style:solid;
+	border-width:2px;
+	border-color:bluejcolor:white;
+	width:50px;
+	height:50px;
+	font-size:20px ;
+}

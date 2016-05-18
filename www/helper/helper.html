@@ -270,6 +270,35 @@ function drawBackWord(wordname,x,y,w,h,u,line,wdlen){
 		}
 		return code;
 }
+function drawString(wordname,x,y,w,h,u,line){
+		var code="";
+		var linelen=line.length;
+		var i;
+		for(i=0;i<linelen;i++){
+		
+			var nostr="03";
+			var col1="lightgray";
+			var col2="gray";
+
+			if(i==0 || i==linelen-1){
+				  nostr="01";
+				  col1="white";
+				  col2="white";
+			}
+	
+			var wd=line.substr(i,1);
+			
+			code+="//word \""+line+"\" ["+wd+"] "+(i+1)+"\n";
+			code+="item=stage.createNewItem();\n";
+			code+="item.setName(\""+wordname+"\");\n";
+			code+="item.addAnimation({\"dsp\":true,\"x\":"+(x+i)+"*u,\"y\":"+y+"*u,\"w\":u,\"h\":u,\"img\":\"word"+nostr+".png\",\"bgc\":\"transparent\",\"bdc\":\""+col1+"\",\"wd\":\""+wd+"\"});\n";
+			code+="stage.addItem(item);\n";
+			code+="\n";
+			
+			drawBlock(i+1,wordname,x+i,y,u,col2);
+		}
+		return code;
+}
 
 function drawWordString(wordname,u,ary){
 	var code="";
@@ -277,8 +306,8 @@ function drawWordString(wordname,u,ary){
 	for(j=0;j<ary.length;j++){
 		var info=ary[j];
 		
-		var backflag,x,y,w,h,line,wdlen;
-		backflag=info[0];
+		var c,x,y,w,h,line,wdlen;
+		c=info[0];
 		x=info[1];
 		y=info[2];
 		w=info[3];
@@ -287,11 +316,18 @@ function drawWordString(wordname,u,ary){
 		wdlen=info[6];
 		
 		
-		if(backflag==false){
-			code+=drawWord(wordname,x,y,w,h,u,line,wdlen);
-		}
-		else{
-			code+=drawBackWord(wordname,x,y,w,h,u,line,wdlen);
+		switch(c){
+			case 'w':
+						code+=drawWord(wordname,x,y,w,h,u,line,wdlen);
+						break;
+			case 'b':
+						code+=drawBackWord(wordname,x,y,w,h,u,line,wdlen);
+						break;
+			case '$':
+			case '^':
+						code+=drawString(wordname,x,y,w,h,u,line);
+						break;
+
 		}
 
 	}
@@ -382,7 +418,7 @@ function getAnsString(str){
     ansstr+=c;
 
     
-    if(c==='w' || c==='b'){
+    if(c==='w' || c==='b' || c==='$' || c==='^'){
       i++;
       var d=str.substr(i,1);
       var j;
@@ -429,16 +465,42 @@ function createWorld(){
   code+="//For example. If current final stage is 012, this function's name is \"initStage013\" and save \"stage013.js\".\n";
   code+="function initStageXXX(stage){\n\n";
   code+="var item;\n";
+  code+="\n";
+  code+="// 1unit=10%  if you want to change unit size, change this.\n";
   code+="var u="+u+";\n";
+  code+="\n";
+  code+="/////Animation Parameter/////\n";
+  code+="//\n";
+  code+="//dsp :display (true/false)  startIndex....number of frames : (dsp) , other frame : (false)\n";
+  code+="//x : position x (percent)\n";
+  code+="//y : position y (percent)\n";
+  code+="//w : width (percent)\n";
+  code+="//h : height (percent)\n";
+  code+="//bgc : background-color\n";
+  code+="//bdc : border-color\n";
+  code+="//img : background-image (filename)\n";
+  code+="//opc : opacity (0.0....1.0) default=1.0\n";
+  code+="//z : z-index (default=2)\n";
+  code+="//wd: character of word\n";
+  code+="\n";
   var ans=getAnsString(ansstr);
-
+  code+="//Answer String\n";
+  code+="//helper original string="+ansstr+"\n";
   code+="stage.setAnsStr(\""+ans+"\");\n";
   code+="item=stage.createNewItem();\n";
+  code+="\n";
+  code+="//class name\n";
   code+="item.setName(\""+vimrioname+"\");\n";
+  code+="\n";
+  code+="//frame offset. default startindex=0\n";
   code+="item.setFrameStartIndex(0);\n";
   code+="stage.addItem(item);\n";
+  code+="\n";
+  code+="//first frame\n";
   code+="//1 start\n";
-  code+="item.addAnimation({\"dsp\":true,\"x\":"+x+"*u,\"y\":"+y+"*u,\"w\":u,\"h\":u,\"bgc\":\"transparent\",\"bdc\":\"blue\",\"img\":\""+vimrioname+"01.png\",\"z\":5,\"opc\":1.0});\n";
+  code+="item.addAnimation({\"dsp\":true,\"x\":"+x+"*u,\"y\":"+y+"*u,\"w\":u,\"h\":u,\"bgc\":\"transparent\",\"bdc\":\"blue\",\"img\":\""+vimrioname+"01.png\",\"z\":5,\"opc\":1.0,\"wd\":\"\"});\n";
+  code+="//following next frames\n";
+  code+="\n";
   var rngwarnflag=false;
   var charwarnflag=false;
   var roadno=1;
@@ -493,7 +555,37 @@ function createWorld(){
     					rngwarnflag=true;
     				}
     				break;
-    	
+    	case '$':
+					var linestr=getLineString(ansstr,i+1);
+					var xtmp=x;
+					if((x+linestr.length-1)*u>=0 && (x+linestr.length-1)*u<100){
+						x=x+linestr.length-1;
+						console.log(x);
+						code+="//"+roadno+"$\n";
+						code+="item.addAnimation({\"x\":"+x+"*u});\n";
+					}
+					else{
+						rngwarning=true;
+					}
+					i+=linestr.length+2;
+					wordstringary.push(["$",xtmp,y,linestr.length,1,linestr,0]);
+					roadno++;
+					break;
+    	case '^':
+					var linestr=getLineString(ansstr,i+1);
+					var xtmp=x;
+					if((x-linestr.length+1)*u>=0 && (x-linestr.length+1)*u<100){
+						x=x-linestr.length+1;
+						code+="//"+roadno+"$\n";
+						code+="item.addAnimation({\"x\":"+x+"*u});\n";
+					}
+					else{
+						rngwarning=true;
+					}
+					i+=linestr.length+2;
+					wordstringary.push(["^",xtmp-linestr.length+1,y,linestr.length,1,linestr,0]);
+					roadno++;
+					break;
     	case 'w':	var linestr=getLineString(ansstr,i+1);
     				var wdlen=getWordLength(linestr);
     				//console.log("linestr=["+linestr+"]");
@@ -510,7 +602,7 @@ function createWorld(){
     				}
     				
     				i+=linestr.length+2;
-    				wordstringary.push([false,xtmp,y,linestr.length,1,linestr,wdlen]);
+    				wordstringary.push(["w",xtmp,y,linestr.length,1,linestr,wdlen]);
     				roadno++;
     				break;
 
@@ -533,14 +625,14 @@ function createWorld(){
     				}
     			
     				i+=linestr.length+2;
-    				wordstringary.push([true,xtmp-linestr.length+1,y,linestr.length,1,linestr,backwdlen]);
+    				wordstringary.push(["b",xtmp-linestr.length+1,y,linestr.length,1,linestr,backwdlen]);
     				roadno++;
     				break;
     				
     	default : charwarnflag=true;
     				break;
     }
-    if(c!="w" && c!="b"){
+    if(c!="w" && c!="b" && c!='$' && c!='^'){
 	    if(i==anslen-1){
 	    	drawBlock(1,vimrioname,x,y,u,"green");
 	    	$('#hlptbl tr:eq('+y*u+') td:eq('+x*u+')').html("<span class='hlptag'>1 goal</span>");
@@ -626,14 +718,16 @@ function dispIndex(){
 </script>
 </head>
 <body onLoad="initHelper()">
-<h4>VIMRIO helper for creator ver1.3.0</h4><br/>
-unit size=<input type="text" id="hlpunitsize" value="10" size="4"/>[%]<br/>
+<h4>VIMRIO helper for creator ver1.4.0</h4><br/>
+unit size=<input type="text" id="hlpunitsize" value="8" size="4"/>[%]<br/>
 start x=<input type="text" id="hlpx0" value="4" size="4"/>[unit]
- , y=<input type="text" id="hlpy0" value="3" size="4"/>[unit]<br/>
-move and word string (support character= h j k l w b )<br/>
-<p> example w --> w"xx "w"yy zz"&nbsp;&nbsp;&nbsp;b --> b"zz"b"xx yy "<br/>
+ , y=<input type="text" id="hlpy0" value="2" size="4"/>[unit]<br/>
+move and word string (support character= h j k l w b $ ^ )<br/>
+<p> example :<br/>
+w --> w"xx "w"yy zz"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b --> b"zz"b"xx yy "<br/>
+$ --> $"aa bb cc"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^ --> ^"aa bb cc"</p><br/>
 <span class="hlpindex"></span><br/>
-<textarea id="hlpansstr" onKeyUp="dispIndex()">hhkkw"word xxx"jjjlljjjb"yyy"b"back "kkhhjjjjlll</textarea><br/>
+<textarea id="hlpansstr" onKeyUp="dispIndex()">hhhkkw"word jump"jjlljjb"yyy"b"back "jj$"move tail"jljj^"  mv head"j</textarea><br/>
 <input class="hlpcodebtn" type="button" onClick="createCode()" value="Create Code" /><span class="hlpwaitmsg" style="visibility:hidden">Please wait a minute.</span>
 <br/>
 <span class="hlpcol hlpcolstart">start</span><span class="hlpcol hlpcolroad">road</span><span class="hlpcol hlpcolgoal">goal</span><span class="hlpcol hlpcolwd1">word</span><span class="hlpcol hlpcolwd2">word</span><span class="hlpcol hlpcolwall">wall</span><span class="hlpcol hlpcolwarn">warning</span><br/>

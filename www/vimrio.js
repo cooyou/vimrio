@@ -9,6 +9,12 @@ var game=null;
 var errorcnt=0;
 var stageIndex=0;
 
+var initialize=false;
+var keytemp=[];
+var keymap=[];
+var keymapindex=0;
+var initchars=["$","^"];
+
 $(function() {
 	console.log("jquery init");
 	$.getScript("itemclass.js", function(){
@@ -63,44 +69,79 @@ function jqInit(){
 		var stage=game.getStage();
 
 		var c=String.fromCharCode(e.keyCode);
+		var shift=false;
+		var ctrl=false;
+		if(e.ctrlKey){
+			ctrl=true;
+		}
 		if(e.shiftKey){
-			console.log("shift");
+			shift=true;
+			//console.log("shift");
 		}
 		else{
-			c=c.toLowerCase()
-		}
-		//console.log("type="+c);
-		var isfinish=stage.isFinish();
-		if(isfinish==false){
-			var success=stage.typeKeyboard(c);
-			if(success==false){
-				errorcnt++;
-				showFooter();
-			}
-			showAns(success);
+			c=c.toLowerCase();
 		}
 		
-        switch(e.keyCode){
-
- 			case 32: // space
- 				console.log("space");
- 			break;
- 			
- 			case 13: // enter
-	 			console.log("enter");
-	 			if(isfinish){
-	 				nextStage();
-	 				return ;
-	 			}
- 			break;
- 			
-        }
-        if(isfinish==false){
-        	stageUpdate(stage);
-        }
+		if(initialize==false){
+			keytemp=[c,shift,ctrl];
+		}
+		else{
+			//console.log("type="+c);
+			var isfinish=stage.isFinish();
+			if(isfinish==false){
+				var success=stage.typeKeyboard(c,shift,ctrl);
+				if(success==false){
+					errorcnt++;
+					showFooter();
+				}
+				showAns(success);
+			}
+			
+			switch(e.keyCode){
+	
+				 case 32: // space
+					 console.log("space");
+				 break;
+				 
+				 case 13: // enter
+					 console.log("enter");
+					 if(isfinish){
+						 nextStage();
+						 return ;
+					 }
+				 break;
+				 
+			}
+			if(isfinish==false){
+				stageUpdate(stage);
+			}
+		}
     });
 }    
 
+
+function textKeyUp(){
+	var str=$('#keytxt').val();
+	//console.log(str);
+	
+	if(initchars[keymapindex]==str){
+		keymap[str]=keytemp;
+		keymapindex++;
+		$("#ktxt").text(initchars[keymapindex]);
+		$("#keytxt").val("");
+	}
+	
+	if(keymapindex==initchars.length){
+		$("#ktxt").css("display","none");
+		$("#keytxt").css("display","none");
+		$("#initdone").css("display","block");
+		$('#initpanel').delay(1000).queue(function(){
+				$(this).css("display","none");
+				initialize=true;
+		  });
+		
+	}
+}
 
 function getGameItemPixX(per){
 	var pixx=Math.floor(cvsw*per*0.01);
@@ -147,7 +188,9 @@ function loadScriptAjax(fname,i){
 }
 
 function initAll(){
-	
+	if(initialize==false){
+		$('#ktxt').text(initchars[0]);
+	}
 	//name : [width,height,left,top]
     $("*").css("border-width",""+(height*0.003)+"px");
     $("#area").css("width",""+width+"px");
@@ -203,6 +246,10 @@ function initAll(){
 
 	if(game.getStageNum()==0){
 		loadScriptAjax("stage",0);
+	}
+	
+	if(initialize==false){
+		$('#keytxt').focus();
 	}
 	
 }
@@ -334,6 +381,7 @@ function initStages(){
 	$(".ansStr").css("display","block");
 	$(".endpanel").css("display","none");
 	$(".hlp").css("display","none");
+	
 
 }
 

@@ -29,12 +29,21 @@
 	<div class="cvs" >
 		<div class="game"></div>
 		<div class="endpanel"><div class="fnt endmsg"><p>Good</p></div><div class="retrybtn" onClick="retryStage()"><p>retry</p></div><div class="nextbtn" onClick="nextStage()"><p>next</p></div></div>
+		
+		<div id="initpanel" >
+			<span>INITIALIZE </span><br/>
+			<span> Please input character</span><br/><br/>
+			<span id="ktxt"></span><br/>
+			<span id="initdone">OK</span><br/>
+			<input id="keytxt" type="text" onKeyUp="textKeyUp()" />
+		</div>
+		
 	</div>
-	
+
 	<div class="hlp">
 		<br/>
 		<h2>VIMRIO</h2>
-		<h4>ver1.6.0</h4>
+		<h4>ver1.7.0</h4>
 		<br/>
 		<h4>vi editor game</h4>
 	</div>
