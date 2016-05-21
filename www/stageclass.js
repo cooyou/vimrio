@@ -13,7 +13,7 @@ var StageClass=function(){
 	};
 	
 	this.isFinish=function(){
-		if(this.frameIndex>=this.ansStr.length){
+		if(this.typeStr.length>=this.ansStr.length){
 			return true;
 		}
 		return false;
@@ -36,7 +36,7 @@ var StageClass=function(){
 	};
 
 	this.typeKeyboard=function(c,shift,ctrl){
-		var ansc=this.ansStr.substr(this.frameIndex,1);
+		var ansc=this.ansStr[this.typeStr.length];
 		var hit=false;
 		if(typeof keymap[ansc] !== "undefined" ){
 			
@@ -56,16 +56,29 @@ var StageClass=function(){
 				hit=true;
 			}
 		}
-
+		var prec="";
+		if(this.typeStr.length>0){
+				prec=this.typeStr.substr(-1);
+		}
+		
 		if(hit){
 			//console.log("correct");
+
 			this.typeStr+=ansc;
-			this.frameIndex++;
-			this.setFrame();
+			if(ansc==="g" && prec!=="g"){
+				;
+			}
+			else{
+				this.frameIndex++;
+				this.setFrame();
+			}
 			return true;
 		}
 		else{
 			//console.log("fail");
+			if(prec==="g"){
+				this.typeStr=this.typeStr.substr(0,this.typeStr.length-1);
+			}
 			return false;
 		}
 		

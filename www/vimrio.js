@@ -13,6 +13,7 @@ var initialize=false;
 var keymap=[];
 var keymapindex=0;
 var initchars=["$","^"];
+var prekey="";
 
 $(function() {
 	//console.log("jquery init");
@@ -35,7 +36,10 @@ function showAns(success){
 	else{
 		$(".ansStr").css("display","none");
 		$(".ansStr").delay(0).fadeIn("fast",function(){
-			$(".ansStr").delay(1000).fadeOut("fast");
+			$(".ansStr").delay(1000).fadeOut("fast",function(){
+					var typeStr=game.getStage().getTypeStr();
+					$("p",".typeStr").text(typeStr);
+			});
 		});
 		
 	}
@@ -120,6 +124,7 @@ function jqInit(){
 			if(isfinish==false){
 				stageUpdate(stage);
 			}
+			prekey=c;
 		}
     });
 }    
@@ -332,7 +337,7 @@ function reset(){
 }
 function changeStage(){
 	stageIndex=Number($('select','.cmbstage').val());
-
+	$('select','.cmbstage').blur();
 	initStages();
 }
 
