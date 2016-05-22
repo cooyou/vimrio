@@ -16,6 +16,31 @@ var initchars=["$","^"];
 var prekey="";
 
 $(function() {
+	if(localStorage) {
+
+		var mapst = localStorage.getItem('keymap');
+		if(typeof mapst !=="undefined" && mapst!=null){
+			var ary=JSON.parse(mapst);
+			
+			if(typeof ary !=="undefined" && ary!=null && ary.length===initchars.length){
+				
+				var mapindex;
+				var map=[]; 
+				for(mapindex=0;mapindex<ary.length;mapindex++){
+					//console.log(JSON.parse(ary[mapindex]));
+					map[initchars[mapindex]]=JSON.parse(ary[mapindex]);
+				}
+				
+				if(typeof map !=="undefined" && map!=null && mapindex===initchars.length){
+					keymap=map;
+					keymapindex=mapindex;
+					initialize=true;
+				}
+			}
+		}
+		
+	}
+	
 	//console.log("jquery init");
 	$.getScript("itemclass.js", function(){
 		$.getScript("stageclass.js", function(){
@@ -129,6 +154,27 @@ function jqInit(){
     });
 }    
 
+function reInitialize(clear){
+	$(".hlp").css("display","none");
+	initialize=false;
+	keymapindex=0;
+	keymap=[];
+	if(clear && localStorage){
+		localStorage.clear();
+	}
+	$("#keytxt").text("");
+	$("#ktxt").text(initchars[keymapindex]);
+	$("#ktxt").css("display","block");
+	$("#keytxt").css("display","block");
+	$("#initdone").css("display","none");
+	$("#initpanel").css("display","block");
+}
+
+function initClose(){
+	$("#initpanel").css("display","none");
+	initialize=true;
+}
+	
 function initKeyDisp(){
 	keymapindex++;
 	$("#ktxt").text(initchars[keymapindex]);
@@ -136,13 +182,24 @@ function initKeyDisp(){
 
 	
 	if(keymapindex==initchars.length){
+		if(localStorage){
+			
+			var i;
+			var ary=[];
+			for(i=0;i<keymapindex;i++){
+				ary[i]=JSON.stringify(keymap[initchars[i]]);
+			}
+			
+			localStorage.setItem('keymap',JSON.stringify(ary));
+			
+		
+		}
+		
 		$("#ktxt").css("display","none");
 		$("#keytxt").css("display","none");
 		$("#initdone").css("display","block");
-		$('#initpanel').delay(1000).queue(function(){
-				$(this).css("display","none");
-				initialize=true;
-		  });
+
+		setTimeout("initClose()",800);
 		
 	}
 }
@@ -232,7 +289,8 @@ function initAll(){
 				,".retrybtn":[cvsw*0.6*0.3,cvsh*0.6*0.2,cvsw*0.6*0.1,cvsh*0.6*0.7]
 				,".nextbtn":[cvsw*0.6*0.3,cvsh*0.6*0.2,cvsw*0.6*0.6,cvsh*0.6*0.7]
 	
-		,".hlp":[width*0.8,height*0.8,width*0.1,height*0.1]
+		,".hlp":[width*0.8,height*0.6,width*0.05,height*0.1]
+			,".initbtn":[width*0.8*0.4,height*0.8*0.1,width*0.8*0.2*0.3,height*0.8*0.4]
 	};
 	
 
@@ -473,4 +531,7 @@ function initBody(){
 	}
 	//console.log("initBody");
 	initAll();
+	if(initialize==false){
+		reInitialize(false);
+	}
 }

@@ -63,6 +63,14 @@ p{
 	z-index:51;
 }
 
+.initbtn{
+	background-color: white;
+	font-size:x-midium;
+	border-style:solid;
+	border-color:black;
+	z-index:70;
+}
+
 .footer{
 	background-color: peru;
 	border-style:solid;
@@ -163,11 +171,12 @@ p{
 }
 
 .hlp{
-	opacity:0.8;
-	background-color: Cornsilk;
+	opacity:0.9;
+	background-color: blue;
 	border-style:solid;
-	border-color:Coral;
-	z-index:40;
+	border-color:red;
+	color:white;
+	z-index:60;
 	display:none;
 }
 
@@ -185,7 +194,7 @@ p{
 	position:absolute;
 	background-color:white;
 	font-size:14px;
-	display:block;
+	display:none;
 }
 #ktxt{
 	font-size:20px;

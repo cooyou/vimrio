@@ -272,13 +272,16 @@ function drawBackWord(wordname,x,y,w,h,u,line,wdlen){
 		}
 		return code;
 }
-function drawString(wordname,x,y,w,h,u,line,headindex){
+function drawString(c,wordname,x,y,w,h,u,line,headindex){
 		var code="";
 		var linelen=line.length;
 		var i;
 		for(i=0;i<linelen;i++){
 		
 			var nostr="03";
+			if(c=="0"){
+			  nostr="04";
+			}
 			var col1="lightgray";
 			var col2="gray";
 			if(i==headindex){
@@ -326,7 +329,8 @@ function drawWordString(wordname,u,ary){
 						break;
 			case '$':
 			case '^':
-						code+=drawString(wordname,x,y,w,h,u,line,wdlen);
+			case '0':
+						code+=drawString(c,wordname,x,y,w,h,u,line,wdlen);
 						break;
 
 		}
@@ -464,7 +468,7 @@ function getAnsString(str){
     ansstr+=c;
 
     
-    if(c==='w' || c==='b' || c==='$' || c==='^'){
+    if(c==='w' || c==='b' || c==='$' || c==='^' || c==="0"){
       i++;
       var d=str.substr(i,1);
       var j;
@@ -523,11 +527,11 @@ function createWorld(){
   
   var code="//Created by VIMRIO helper\n\n";
   code+="//Please rename XXX.\n";
-  code+="//For example. If current final stage is 012, this function's name is \"initStage013\" and save \"stage013.js\".\n";
+  code+="//For example. If current final stage is 013, this function's name is \"initStage014\" and save \"stage014.js\".\n";
   code+="function initStageXXX(stage){\n\n";
   code+="var item;\n";
   code+="\n";
-  code+="// 1unit=10%  if you want to change unit size, change this.\n";
+  code+="// Percent of one unit.  if you want to change unit size, change this.\n";
   code+="var u="+u+";\n";
   code+="\n";
   code+="/////Animation Parameter/////\n";
@@ -542,7 +546,7 @@ function createWorld(){
   code+="//img : background-image (filename)\n";
   code+="//opc : opacity (0.0....1.0) default=1.0\n";
   code+="//z : z-index (default=2)\n";
-  code+="//wd: character of word\n";
+  code+="//wd : character of word\n";
   code+="\n";
   var ans=getAnsString(ansstr);
   code+="//Answer String\n";
@@ -618,14 +622,14 @@ function createWorld(){
     				break;
     				
     	case 'g':	gary.push(["gg",x,y]);
-    				code+="//"+roadno+"gg\n";
+    				code+="//"+roadno+" gg\n";
     				y=0;
     				gary.push(["",x,y]);
     				code+="item.addAnimation({\"y\":0});\n";
     				i=i+1;
     				break;
     	case 'G':	gary.push(["G",x,y]);
-    				code+="//"+roadno+"G\n";
+    				code+="//"+roadno+" G\n";
     				y=Math.floor(100/u)-1;
     				gary.push(["",x,y]);
     				code+="item.addAnimation({\"y\":"+y+"*u});\n"; 
@@ -638,7 +642,7 @@ function createWorld(){
 					if((x+linestr.length-1)*u>=0 && (x+linestr.length-1)*u<100){
 						x=x+linestr.length-1;
 						//console.log(x);
-						code+="//"+roadno+"$\n";
+						code+="//"+roadno+" $\n";
 						code+="item.addAnimation({\"x\":"+x+"*u});\n";
 					}
 					else{
@@ -650,14 +654,21 @@ function createWorld(){
 					roadno++;
 					break;
     	case '^':
+    	case '0':
 					var linestr=getLineString(ansstr,i+1);
 		
-					var headindex=getLineHeadIndex(linestr);
+					var headindex;
+					if(c=='0'){
+					  headindex=0;
+					}
+					else{
+					  headindex=getLineHeadIndex(linestr);
+					}
 					//console.log(headindex);
 					var xtmp=x;
 					if((x-linestr.length+headindex+1)*u>=0 && (x-linestr.length+headindex+1)*u<100){
 						x=x-linestr.length+headindex+1;
-						code+="//"+roadno+"$\n";
+						code+="//"+roadno+" "+c+"\n";
 						code+="item.addAnimation({\"x\":"+x+"*u});\n";
 					}
 					else{
@@ -665,7 +676,7 @@ function createWorld(){
 					}
 					i+=linestr.length+2;
 					
-					wordstringary.push(["^",xtmp-linestr.length+1,y,linestr.length,1,linestr,headindex]);
+					wordstringary.push([c,xtmp-linestr.length+1,y,linestr.length,1,linestr,headindex]);
 					roadno++;
 					break;
     	case 'w':	var linestr=getLineString(ansstr,i+1);
@@ -714,7 +725,7 @@ function createWorld(){
     	default : charwarnflag=true;
     				break;
     }
-    if(c!="w" && c!="b" && c!="$" && c!="^" && c!="g" && c!="G"){
+    if(c!="w" && c!="b" && c!="$" && c!="0" && c!="^" && c!="g" && c!="G"){
 	    if(i==anslen-1){
 	    	drawBlock(1,vimrioname,x,y,u,"green");
 	    	$('#hlptbl tr:eq('+y*u+') td:eq('+x*u+')').html("<span class='hlptag'>1 goal</span>");
@@ -806,14 +817,14 @@ function dispIndex(){
 </script>
 </head>
 <body onLoad="initHelper()">
-<h4>VIMRIO helper for creator ver1.5.0</h4><br/>
+<h4>VIMRIO helper for creator ver2.0.0</h4><br/>
 unit size=<input type="text" id="hlpunitsize" value="8" size="4"/>[%]<br/>
 start x=<input type="text" id="hlpx0" value="4" size="4"/>[unit]
  , y=<input type="text" id="hlpy0" value="2" size="4"/>[unit]<br/>
-move and word string (support character= h j k l w b $ ^ gg G )<br/>
+move and word string (support character= h j k l w b $ ^ 0 gg G )<br/>
 <p> example :<br/>
 w --> w"xx "w"yy zz"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b --> b"zz"b"xx yy "<br/>
-$ --> $"aa bb cc"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^ --> ^"aa bb cc"</p><br/>
+$ --> $"aa bb cc"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^ --> ^" aa bb cc"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0 --> 0"aa bb cc"</p><br/>
 <span class="hlpindex"></span><br/>
 <textarea id="hlpansstr" onKeyUp="dispIndex()">hhhkkw"word jump"jjlljjb"yyy"b"back "jj$"move tail"jljj^"  mv head"j</textarea><br/>
 <input class="hlpcodebtn" type="button" onClick="createCode()" value="Create Code" /><span class="hlpwaitmsg" style="visibility:hidden">Please wait a minute.</span>
