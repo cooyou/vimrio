@@ -11,7 +11,7 @@ var u=8;
 
 /////Animation Parameter/////
 //
-//dsp :display (true/false)  startIndex....number of frames : (dsp) , other frame : (false)
+//dsp :display (true/false)  startIndex.... display or hide
 //x : position x (percent)
 //y : position y (percent)
 //w : width (percent)

@@ -269,8 +269,8 @@ function initAll(){
     //console.log("offsetleft:"+offsetleft+" offsettop:"+offsettop);
 	var whlt=
 	{	 ".header":[width*1.0,height*0.05,0,0]
-			,".ttl":[width*1.0*1.0*0.2,height*0.05*0.8,width*1.0*0.3,height*0.05*0.05]
-			,".cmbstage":[width*1.0*1.0*0.2,height*0.05*0.8,width*1.0*0.65,height*0.05*0.05]
+			,".ttl":[width*1.0*1.0*0.2,height*0.05*0.8,width*1.0*0.4,0]
+			,".cmbstage":[width*1.0*1.0*0.2,height*0.05*0.8,width*1.0*0.05,height*0.05*0.05]
 			,".notebtn":[width*1.0*1.0*0.1,height*0.05*0.8,width*1.0*0.85,height*0.05*0.05]
 
 		,".leftside":[width*0.05,height*0.9,0,height*0.05]
@@ -394,6 +394,7 @@ function reset(){
 	initStages();
 }
 function changeStage(){
+	console.log("change stage");
 	stageIndex=Number($('select','.cmbstage').val());
 	$('select','.cmbstage').blur();
 	initStages();
@@ -416,7 +417,7 @@ function initStages(){
 		createCmbBox(stagenum);
 	}
 
-	
+	$('select','.cmbstage').val(stageIndex);
 	
 	game.setStageIndex(stageIndex);
 	game.initStage();

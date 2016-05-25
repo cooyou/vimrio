@@ -162,12 +162,12 @@ function drawBlock(no,name,x,y,u,color){
 			if(prename===name){
 				col="yellow";
 			}
-			if(iy==0 && ix==0){
+			if(iy===0 && ix===0){
 			  $("#hlptbl tr:eq(" + (yu+iy) + ") td:eq(" + (xu+ix) + ")" ).html('<span class="hlptag">'+no+'</span>');
 			}
 			$("#hlptbl tr:eq(" + (yu+iy) + ") td:eq(" + (xu+ix) + ")" ).attr("name",name);
 	  		$("#hlptbl tr:eq(" + (yu+iy) + ") td:eq(" + (xu+ix) + ")" ).css("background-color",col);
-	  		if(ix==0 || iy==0 || ix==u-1 || iy==u-1){
+	  		if(ix===0 || iy===0 || ix===u-1 || iy===u-1){
 	  			$("#hlptbl tr:eq(" + (yu+iy) + ") td:eq(" + (xu+ix) + ")" ).css("opacity",0.9);
 	  		}
 	  		else{
@@ -213,7 +213,7 @@ function isWall(x,y,u){
 }
 
 
-function drawWord(wordname,x,y,w,h,u,line,wdlen){
+function drawWord(c,wordname,x,y,w,h,u,line,wdlen){
 		var code="";
 		var linelen=line.length;
 		var i;
@@ -223,7 +223,7 @@ function drawWord(wordname,x,y,w,h,u,line,wdlen){
 			var col1="lightgray";
 			var col2="gray";
 
-			if(i==0 || i==wdlen){
+			if((c==="w" && i===0) || i===wdlen){
 				  nostr="01";
 				  col1="white";
 				  col2="white";
@@ -243,7 +243,7 @@ function drawWord(wordname,x,y,w,h,u,line,wdlen){
 		return code;
 }
 
-function drawBackWord(wordname,x,y,w,h,u,line,wdlen){
+function drawBackWord(c,wordname,x,y,w,h,u,line,wdlen){
 		var code="";
 		var linelen=line.length;
 		var i;
@@ -253,7 +253,7 @@ function drawBackWord(wordname,x,y,w,h,u,line,wdlen){
 			var col1="lightgray";
 			var col2="gray";
 
-			if(i==wdlen-1){
+			if(i===wdlen-1){
 				  nostr="01";
 				  col1="white";
 				  col2="white";
@@ -272,6 +272,9 @@ function drawBackWord(wordname,x,y,w,h,u,line,wdlen){
 		}
 		return code;
 }
+
+
+
 function drawString(c,wordname,x,y,w,h,u,line,headindex){
 		var code="";
 		var linelen=line.length;
@@ -279,12 +282,12 @@ function drawString(c,wordname,x,y,w,h,u,line,headindex){
 		for(i=0;i<linelen;i++){
 		
 			var nostr="03";
-			if(c=="0"){
+			if(c==="0"){
 			  nostr="04";
 			}
 			var col1="lightgray";
 			var col2="gray";
-			if(i==headindex){
+			if(i===headindex){
 					  nostr="01";
 					  col1="white";
 					  col2="white";
@@ -322,10 +325,13 @@ function drawWordString(wordname,u,ary){
 		
 		switch(c){
 			case 'w':
-						code+=drawWord(wordname,x,y,w,h,u,line,wdlen);
+						code+=drawWord(c,wordname,x,y,w,h,u,line,wdlen);
 						break;
 			case 'b':
-						code+=drawBackWord(wordname,x,y,w,h,u,line,wdlen);
+						code+=drawBackWord(c,wordname,x,y,w,h,u,line,wdlen);
+						break;
+			case 'e':
+						code+=drawWord(c,wordname,x,y,w,h,u,line,wdlen);
 						break;
 			case '$':
 			case '^':
@@ -428,12 +434,32 @@ function getBackWordLength(str){
 	return len;
 }
 
+function getEndWordLength(str){
+	var len=0;
+	var i=1;
+    var cnt=0;
+	if(str[i]===" "){
+		for(;i<str.length;i++){
+			if(str[i]!==" "){
+				break;
+			}
+		}
+	}
+		
+	for(;i<str.length;i++){
+		if(str[i]===" "){
+			break;
+		}
+	}
+	return i-1;
+}
+
 function replaceAllSpace(str){
   var i;
   var dst="";
   for(i=0;i<str.length;i++){
     var code=str.charCodeAt(i);
-    if(code==32 || code==160){
+    if(code===32 || code===160){
       dst+=" ";
     }
     else{
@@ -468,7 +494,7 @@ function getAnsString(str){
     ansstr+=c;
 
     
-    if(c==='w' || c==='b' || c==='$' || c==='^' || c==="0"){
+    if(c==='w' || c==='b' || c==="e" || c==='$' || c==='^' || c==="0"){
       i++;
       var d=str.substr(i,1);
       var j;
@@ -536,7 +562,7 @@ function createWorld(){
   code+="\n";
   code+="/////Animation Parameter/////\n";
   code+="//\n";
-  code+="//dsp :display (true/false)  startIndex....number of frames : (dsp) , other frame : (false)\n";
+  code+="//dsp :display (true/false)  startIndex.... display or hide\n";
   code+="//x : position x (percent)\n";
   code+="//y : position y (percent)\n";
   code+="//w : width (percent)\n";
@@ -658,7 +684,7 @@ function createWorld(){
 					var linestr=getLineString(ansstr,i+1);
 		
 					var headindex;
-					if(c=='0'){
+					if(c==='0'){
 					  headindex=0;
 					}
 					else{
@@ -699,7 +725,7 @@ function createWorld(){
     				roadno++;
     				break;
 
-    	case 'b':	if(prec=="b"){
+    	case 'b':	if(prec==="b"){
     					x--;
     				}
     				var linestr=getLineString(ansstr,i+1);
@@ -721,12 +747,34 @@ function createWorld(){
     				wordstringary.push(["b",xtmp-linestr.length+1,y,linestr.length,1,linestr,backwdlen]);
     				roadno++;
     				break;
+					
+    	case 'e':if(prec==="e"){
+						x++;
+					}
+					var linestr=getLineString(ansstr,i+1);
+    				var wdlen=getEndWordLength(linestr);
+    				//console.log("linestr=["+linestr+"]");
+    				//console.log("wdlen="+wdlen);
+    	
+    				var xtmp=x;
+    				if((x+wdlen)*u>=0 && (x+wdlen)*u<100){
+    					x=x+wdlen;
+    					code+="//"+roadno+" e\n";
+    					code+="item.addAnimation({\"x\":"+x+"*u});\n";
+    				}
+    				else{
+    					rngwarnflag=true;
+    				}
     				
+    				i+=linestr.length+2;
+    				wordstringary.push(["e",xtmp,y,linestr.length,1,linestr,wdlen]);
+    				roadno++;
+    				break;				
     	default : charwarnflag=true;
     				break;
     }
-    if(c!="w" && c!="b" && c!="$" && c!="0" && c!="^" && c!="g" && c!="G"){
-	    if(i==anslen-1){
+    if(c!="w" && c!="b" && c!="e" && c!="$" && c!="0" && c!="^" && c!="g" && c!="G"){
+	    if(i===anslen-1){
 	    	drawBlock(1,vimrioname,x,y,u,"green");
 	    	$('#hlptbl tr:eq('+y*u+') td:eq('+x*u+')').html("<span class='hlptag'>1 goal</span>");
 	    }
@@ -786,7 +834,7 @@ function dispIndex(){
     var wordflag=false;
     for(i=0;i<ansstr.length;i++){
     
-      if(wordflag==false){
+      if(wordflag===false){
         
         if(ansstr[i]==='"'){
          	wordflag=true;
@@ -806,7 +854,7 @@ function dispIndex(){
          	wordflag=false;
       	}
       }
-      if(index==i){
+      if(index===i){
       	    break;
       }
 
@@ -817,16 +865,16 @@ function dispIndex(){
 </script>
 </head>
 <body onLoad="initHelper()">
-<h4>VIMRIO helper for creator ver2.0.0</h4><br/>
+<h4>VIMRIO helper for creator ver2.1.0</h4><br/>
 unit size=<input type="text" id="hlpunitsize" value="8" size="4"/>[%]<br/>
 start x=<input type="text" id="hlpx0" value="4" size="4"/>[unit]
  , y=<input type="text" id="hlpy0" value="2" size="4"/>[unit]<br/>
-move and word string (support character= h j k l w b $ ^ 0 gg G )<br/>
+move and word string (support character= h j k l w b e $ ^ 0 gg G )<br/>
 <p> example :<br/>
-w --> w"xx "w"yy zz"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b --> b"zz"b"xx yy "<br/>
+w --> w"xx "w"yy zz"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b --> b"zz"b"xx yy "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e --> e"xx"e" yy zz"<br/>
 $ --> $"aa bb cc"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^ --> ^" aa bb cc"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0 --> 0"aa bb cc"</p><br/>
 <span class="hlpindex"></span><br/>
-<textarea id="hlpansstr" onKeyUp="dispIndex()">hhhkkw"word jump"jjlljjb"yyy"b"back "jj$"move tail"jljj^"  mv head"j</textarea><br/>
+<textarea id="hlpansstr" onKeyUp="dispIndex()">hhhkkw"word jump"jjlljjb"yyy"e"back to "jj$"move tail"jljj^"  mv head"j</textarea><br/>
 <input class="hlpcodebtn" type="button" onClick="createCode()" value="Create Code" /><span class="hlpwaitmsg" style="visibility:hidden">Please wait a minute.</span>
 <br/>
 <span class="hlpcol hlpcolstart">start</span><span class="hlpcol hlpcolroad">road</span><span class="hlpcol hlpcolgoal">goal</span><span class="hlpcol hlpcolwd1">word</span><span class="hlpcol hlpcolwd2">word</span><span class="hlpcol hlpcolwall">wall</span><span class="hlpcol hlpcoldoor">door</span><span class="hlpcol hlpcolwarn">warning</span><br/>

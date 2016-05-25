@@ -1,17 +1,17 @@
 //Created by VIMRIO helper
 
 //Please rename XXX.
-//For example. If current final stage is 012, this function's name is "initStage013" and save "stage013.js".
+//For example. If current final stage is 013, this function's name is "initStage014" and save "stage014.js".
 function initStage010(stage){
 
 var item;
 
-// 1unit=10%  if you want to change unit size, change this.
+// Percent of one unit.  if you want to change unit size, change this.
 var u=8;
 
 /////Animation Parameter/////
 //
-//dsp :display (true/false)  startIndex....number of frames : (dsp) , other frame : (false)
+//dsp :display (true/false)  startIndex.... display or hide
 //x : position x (percent)
 //y : position y (percent)
 //w : width (percent)
@@ -21,10 +21,10 @@ var u=8;
 //img : background-image (filename)
 //opc : opacity (0.0....1.0) default=1.0
 //z : z-index (default=2)
-//wd: character of word
+//wd : character of word
 
 //Answer String
-//helper original string=hhhkkw"word jump"jjlljjb"yyy"b"back "jj$"move tail"jljj^" Â mv head"j
+//helper original string=hhhkkw"word jump"jjlljjb"now"b"back "jj$"move tail"jljj^"  mv head"j
 stage.setAnsStr("hhhkkwjjlljjbbjj$jljj^j");
 item=stage.createNewItem();
 
@@ -72,7 +72,7 @@ item.addAnimation({"x":2*u});
 item.addAnimation({"y":6*u});
 //17 j
 item.addAnimation({"y":7*u});
-//18$
+//18 $
 item.addAnimation({"x":10*u});
 //19 j
 item.addAnimation({"y":8*u});
@@ -82,7 +82,7 @@ item.addAnimation({"x":11*u});
 item.addAnimation({"y":9*u});
 //22 j
 item.addAnimation({"y":10*u});
-//23$
+//23 ^
 item.addAnimation({"x":5*u});
 //24 j
 item.addAnimation({"y":11*u});
@@ -147,22 +147,22 @@ item.setName("word");
 item.addAnimation({"dsp":true,"x":10*u,"y":1*u,"w":u,"h":u,"img":"word02.png","bgc":"transparent","bdc":"lightgray","wd":"p"});
 stage.addItem(item);
 
-//word "yyy" [y] 1
+//word "now" [w] 1
 item=stage.createNewItem();
 item.setName("word");
-item.addAnimation({"dsp":true,"x":9*u,"y":5*u,"w":u,"h":u,"img":"word02.png","bgc":"transparent","bdc":"lightgray","wd":"y"});
+item.addAnimation({"dsp":true,"x":9*u,"y":5*u,"w":u,"h":u,"img":"word02.png","bgc":"transparent","bdc":"lightgray","wd":"w"});
 stage.addItem(item);
 
-//word "yyy" [y] 2
+//word "now" [o] 2
 item=stage.createNewItem();
 item.setName("word");
-item.addAnimation({"dsp":true,"x":8*u,"y":5*u,"w":u,"h":u,"img":"word02.png","bgc":"transparent","bdc":"lightgray","wd":"y"});
+item.addAnimation({"dsp":true,"x":8*u,"y":5*u,"w":u,"h":u,"img":"word02.png","bgc":"transparent","bdc":"lightgray","wd":"o"});
 stage.addItem(item);
 
-//word "yyy" [y] 3
+//word "now" [n] 3
 item=stage.createNewItem();
 item.setName("word");
-item.addAnimation({"dsp":true,"x":7*u,"y":5*u,"w":u,"h":u,"img":"word01.png","bgc":"transparent","bdc":"white","wd":"y"});
+item.addAnimation({"dsp":true,"x":7*u,"y":5*u,"w":u,"h":u,"img":"word01.png","bgc":"transparent","bdc":"white","wd":"n"});
 stage.addItem(item);
 
 //word "back " [ ] 1
@@ -302,6 +302,7 @@ item=stage.createNewItem();
 item.setName("word");
 item.addAnimation({"dsp":true,"x":11*u,"y":10*u,"w":u,"h":u,"img":"word03.png","bgc":"transparent","bdc":"lightgray","wd":"d"});
 stage.addItem(item);
+
 
 
 //wall 1

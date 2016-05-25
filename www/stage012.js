@@ -1,17 +1,17 @@
 //Created by VIMRIO helper
 
 //Please rename XXX.
-//For example. If current final stage is 012, this function's name is "initStage013" and save "stage013.js".
+//For example. If current final stage is 013, this function's name is "initStage014" and save "stage014.js".
 function initStage012(stage){
 
 var item;
 
-// 1unit=10%  if you want to change unit size, change this.
+// Percent of one unit.  if you want to change unit size, change this.
 var u=10;
 
 /////Animation Parameter/////
 //
-//dsp :display (true/false)  startIndex....number of frames : (dsp) , other frame : (false)
+//dsp :display (true/false)  startIndex.... display or hide
 //x : position x (percent)
 //y : position y (percent)
 //w : width (percent)
@@ -21,7 +21,7 @@ var u=10;
 //img : background-image (filename)
 //opc : opacity (0.0....1.0) default=1.0
 //z : z-index (default=2)
-//wd: character of word
+//wd : character of word
 
 //Answer String
 //helper original string=lGllggllGllggl
@@ -42,25 +42,25 @@ item.addAnimation({"dsp":true,"x":0*u,"y":2*u,"w":u,"h":u,"bgc":"transparent","b
 
 //2 l
 item.addAnimation({"x":1*u});
-//3G
+//3 G
 item.addAnimation({"y":9*u});
 //3 l
 item.addAnimation({"x":2*u});
 //4 l
 item.addAnimation({"x":3*u});
-//5gg
+//5 gg
 item.addAnimation({"y":0});
 //5 l
 item.addAnimation({"x":4*u});
 //6 l
 item.addAnimation({"x":5*u});
-//7G
+//7 G
 item.addAnimation({"y":9*u});
 //7 l
 item.addAnimation({"x":6*u});
 //8 l
 item.addAnimation({"x":7*u});
-//9gg
+//9 gg
 item.addAnimation({"y":0});
 //9 l
 item.addAnimation({"x":8*u});

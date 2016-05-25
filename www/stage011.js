@@ -1,17 +1,17 @@
 //Created by VIMRIO helper
 
 //Please rename XXX.
-//For example. If current final stage is 012, this function's name is "initStage013" and save "stage013.js".
+//For example. If current final stage is 013, this function's name is "initStage014" and save "stage014.js".
 function initStage011(stage){
 
 var item;
 
-// 1unit=10%  if you want to change unit size, change this.
+// Percent of one unit.  if you want to change unit size, change this.
 var u=5;
 
 /////Animation Parameter/////
 //
-//dsp :display (true/false)  startIndex....number of frames : (dsp) , other frame : (false)
+//dsp :display (true/false)  startIndex.... display or hide
 //x : position x (percent)
 //y : position y (percent)
 //w : width (percent)
@@ -21,10 +21,10 @@ var u=5;
 //img : background-image (filename)
 //opc : opacity (0.0....1.0) default=1.0
 //z : z-index (default=2)
-//wd: character of word
+//wd : character of word
 
 //Answer String
-//helper original string=$"This is my pen Â "jj^"That is your pen"jj$" It is a picture"jj^" Â It is a letter"jj$"You had books"jj^"I had pens"jj
+//helper original string=$"This is my pen  "jj^"That is your pen"jj$" It is a picture"jj^"  It is a letter"jj$"You had books"jj^"I had pens"jj
 stage.setAnsStr("$jj^jj$jj^jj$jj^jj");
 item=stage.createNewItem();
 
@@ -40,37 +40,37 @@ stage.addItem(item);
 item.addAnimation({"dsp":true,"x":2*u,"y":3*u,"w":u,"h":u,"bgc":"transparent","bdc":"blue","img":"vimrio01.png","z":5,"opc":1.0,"wd":""});
 //following next frames
 
-//2$
+//2 $
 item.addAnimation({"x":17*u});
 //3 j
 item.addAnimation({"y":4*u});
 //4 j
 item.addAnimation({"y":5*u});
-//5$
+//5 ^
 item.addAnimation({"x":2*u});
 //6 j
 item.addAnimation({"y":6*u});
 //7 j
 item.addAnimation({"y":7*u});
-//8$
+//8 $
 item.addAnimation({"x":17*u});
 //9 j
 item.addAnimation({"y":8*u});
 //10 j
 item.addAnimation({"y":9*u});
-//11$
+//11 ^
 item.addAnimation({"x":4*u});
 //12 j
 item.addAnimation({"y":10*u});
 //13 j
 item.addAnimation({"y":11*u});
-//14$
+//14 $
 item.addAnimation({"x":16*u});
 //15 j
 item.addAnimation({"y":12*u});
 //16 j
 item.addAnimation({"y":13*u});
-//17$
+//17 ^
 item.addAnimation({"x":7*u});
 //18 j
 item.addAnimation({"y":14*u});
@@ -604,6 +604,7 @@ item=stage.createNewItem();
 item.setName("word");
 item.addAnimation({"dsp":true,"x":16*u,"y":13*u,"w":u,"h":u,"img":"word03.png","bgc":"transparent","bdc":"lightgray","wd":"s"});
 stage.addItem(item);
+
 
 
 //wall 1

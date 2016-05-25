@@ -1,18 +1,45 @@
 //Created by VIMRIO helper
 
 //Please rename XXX.
-//For example. If current final stage is 012, this function's name is "initStage013" and save "stage013.js".
+//For example. If current final stage is 013, this function's name is "initStage014" and save "stage014.js".
 function initStage007(stage){
 
 var item;
+
+// Percent of one unit.  if you want to change unit size, change this.
 var u=10;
+
+/////Animation Parameter/////
+//
+//dsp :display (true/false)  startIndex.... display or hide
+//x : position x (percent)
+//y : position y (percent)
+//w : width (percent)
+//h : height (percent)
+//bgc : background-color
+//bdc : border-color
+//img : background-image (filename)
+//opc : opacity (0.0....1.0) default=1.0
+//z : z-index (default=2)
+//wd : character of word
+
+//Answer String
+//helper original string=kkb"zz"b"xx word "jj
 stage.setAnsStr("kkbbjj");
 item=stage.createNewItem();
+
+//class name
 item.setName("vimrio");
+
+//frame offset. default startindex=0
 item.setFrameStartIndex(0);
 stage.addItem(item);
+
+//first frame
 //1 start
-item.addAnimation({"dsp":true,"x":9*u,"y":4*u,"w":u,"h":u,"bgc":"transparent","bdc":"blue","img":"vimrio01.png","z":5,"opc":1.0});
+item.addAnimation({"dsp":true,"x":9*u,"y":4*u,"w":u,"h":u,"bgc":"transparent","bdc":"blue","img":"vimrio01.png","z":5,"opc":1.0,"wd":""});
+//following next frames
+
 //2 k
 item.addAnimation({"y":3*u});
 //3 k
@@ -32,16 +59,16 @@ item.setName("goal");
 item.addAnimation({"dsp":true,"x":3*u,"y":4*u,"w":u,"h":u,"img":"goal01.png","bgc":"yellow","bdc":"yellow"});
 stage.addItem(item);
 
-//word "xx" [x] 1
+//word "zz" [z] 1
 item=stage.createNewItem();
 item.setName("word");
-item.addAnimation({"dsp":true,"x":9*u,"y":2*u,"w":u,"h":u,"img":"word02.png","bgc":"transparent","bdc":"lightgray","wd":"x"});
+item.addAnimation({"dsp":true,"x":9*u,"y":2*u,"w":u,"h":u,"img":"word02.png","bgc":"transparent","bdc":"lightgray","wd":"z"});
 stage.addItem(item);
 
-//word "xx" [x] 2
+//word "zz" [z] 2
 item=stage.createNewItem();
 item.setName("word");
-item.addAnimation({"dsp":true,"x":8*u,"y":2*u,"w":u,"h":u,"img":"word01.png","bgc":"transparent","bdc":"white","wd":"x"});
+item.addAnimation({"dsp":true,"x":8*u,"y":2*u,"w":u,"h":u,"img":"word01.png","bgc":"transparent","bdc":"white","wd":"z"});
 stage.addItem(item);
 
 //word "xx word " [ ] 1
@@ -91,6 +118,7 @@ item=stage.createNewItem();
 item.setName("word");
 item.addAnimation({"dsp":true,"x":0*u,"y":2*u,"w":u,"h":u,"img":"word02.png","bgc":"transparent","bdc":"lightgray","wd":"x"});
 stage.addItem(item);
+
 
 
 //wall 1

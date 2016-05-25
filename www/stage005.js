@@ -1,18 +1,45 @@
 //Created by VIMRIO helper
 
 //Please rename XXX.
-//For example. If current final stage is 012, this function's name is "initStage013" and save "stage013.js".
+//For example. If current final stage is 013, this function's name is "initStage014" and save "stage014.js".
 function initStage005(stage){
 
 var item;
+
+// Percent of one unit.  if you want to change unit size, change this.
 var u=10;
+
+/////Animation Parameter/////
+//
+//dsp :display (true/false)  startIndex.... display or hide
+//x : position x (percent)
+//y : position y (percent)
+//w : width (percent)
+//h : height (percent)
+//bgc : background-color
+//bdc : border-color
+//img : background-image (filename)
+//opc : opacity (0.0....1.0) default=1.0
+//z : z-index (default=2)
+//wd : character of word
+
+//Answer String
+//helper original string=hjjw"ab "w"cd ef"kkl
 stage.setAnsStr("hjjwwkkl");
 item=stage.createNewItem();
+
+//class name
 item.setName("vimrio");
+
+//frame offset. default startindex=0
 item.setFrameStartIndex(0);
 stage.addItem(item);
+
+//first frame
 //1 start
-item.addAnimation({"dsp":true,"x":1*u,"y":4*u,"w":u,"h":u,"bgc":"transparent","bdc":"blue","img":"vimrio01.png","z":5,"opc":1.0});
+item.addAnimation({"dsp":true,"x":1*u,"y":4*u,"w":u,"h":u,"bgc":"transparent","bdc":"blue","img":"vimrio01.png","z":5,"opc":1.0,"wd":""});
+//following next frames
+
 //2 h
 item.addAnimation({"x":0*u});
 //3 j

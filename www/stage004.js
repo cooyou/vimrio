@@ -1,18 +1,45 @@
 //Created by VIMRIO helper
 
 //Please rename XXX.
-//For example. If current final stage is 012, this function's name is "initStage013" and save "stage013.js".
+//For example. If current final stage is 013, this function's name is "initStage014" and save "stage014.js".
 function initStage004(stage){
 
 var item;
+
+// Percent of one unit.  if you want to change unit size, change this.
 var u=5;
+
+/////Animation Parameter/////
+//
+//dsp :display (true/false)  startIndex.... display or hide
+//x : position x (percent)
+//y : position y (percent)
+//w : width (percent)
+//h : height (percent)
+//bgc : background-color
+//bdc : border-color
+//img : background-image (filename)
+//opc : opacity (0.0....1.0) default=1.0
+//z : z-index (default=2)
+//wd : character of word
+
+//Answer String
+//helper original string=lljjllljjjllljjjlllklkkkhkklllkkhhhhkkllllljllkklljjjjhjjjljjhhhhjjlljjjhhhhhjhjhhhkkkhkhkhhhjhjjllljjhjjllljllllllkkklllljjh
 stage.setAnsStr("lljjllljjjllljjjlllklkkkhkklllkkhhhhkkllllljllkklljjjjhjjjljjhhhhjjlljjjhhhhhjhjhhhkkkhkhkhhhjhjjllljjhjjllljllllllkkklllljjh");
 item=stage.createNewItem();
+
+//class name
 item.setName("vimrio");
+
+//frame offset. default startindex=0
 item.setFrameStartIndex(0);
 stage.addItem(item);
+
+//first frame
 //1 start
-item.addAnimation({"dsp":true,"x":0*u,"y":3*u,"w":u,"h":u,"bgc":"transparent","bdc":"blue","img":"vimrio01.png","z":5,"opc":1.0});
+item.addAnimation({"dsp":true,"x":0*u,"y":3*u,"w":u,"h":u,"bgc":"transparent","bdc":"blue","img":"vimrio01.png","z":5,"opc":1.0,"wd":""});
+//following next frames
+
 //2 l
 item.addAnimation({"x":1*u});
 //3 l
@@ -270,1129 +297,1131 @@ item.setName("goal");
 item.addAnimation({"dsp":true,"x":16*u,"y":18*u,"w":u,"h":u,"img":"goal01.png","bgc":"yellow","bdc":"yellow"});
 stage.addItem(item);
 
-//1
+
+
+//wall 1
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":9*u,"y":0*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//2
+//wall 2
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":10*u,"y":0*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//3
+//wall 3
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":11*u,"y":0*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//4
+//wall 4
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":12*u,"y":0*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//5
+//wall 5
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":13*u,"y":0*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//6
+//wall 6
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":14*u,"y":0*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//7
+//wall 7
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":15*u,"y":0*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//8
+//wall 8
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":16*u,"y":0*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//9
+//wall 9
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":9*u,"y":1*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//10
+//wall 10
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":16*u,"y":1*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//11
+//wall 11
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":18*u,"y":1*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//12
+//wall 12
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":0*u,"y":2*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//13
+//wall 13
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":1*u,"y":2*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//14
+//wall 14
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":2*u,"y":2*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//15
+//wall 15
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":3*u,"y":2*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//16
+//wall 16
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":9*u,"y":2*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//17
+//wall 17
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":11*u,"y":2*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//18
+//wall 18
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":12*u,"y":2*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//19
+//wall 19
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":13*u,"y":2*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//20
+//wall 20
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":14*u,"y":2*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//21
+//wall 21
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":18*u,"y":2*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//22
+//wall 22
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":3*u,"y":3*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//23
+//wall 23
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":9*u,"y":3*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//24
+//wall 24
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":15*u,"y":3*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//25
+//wall 25
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":16*u,"y":3*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//26
+//wall 26
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":17*u,"y":3*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//27
+//wall 27
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":18*u,"y":3*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//28
+//wall 28
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":0*u,"y":4*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//29
+//wall 29
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":1*u,"y":4*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//30
+//wall 30
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":3*u,"y":4*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//31
+//wall 31
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":4*u,"y":4*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//32
+//wall 32
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":5*u,"y":4*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//33
+//wall 33
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":6*u,"y":4*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//34
+//wall 34
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":9*u,"y":4*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//35
+//wall 35
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":10*u,"y":4*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//36
+//wall 36
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":11*u,"y":4*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//37
+//wall 37
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":12*u,"y":4*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//38
+//wall 38
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":13*u,"y":4*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//39
+//wall 39
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":15*u,"y":4*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//40
+//wall 40
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":17*u,"y":4*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//41
+//wall 41
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":1*u,"y":5*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//42
+//wall 42
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":6*u,"y":5*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//43
+//wall 43
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":10*u,"y":5*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//44
+//wall 44
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":15*u,"y":5*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//45
+//wall 45
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":17*u,"y":5*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//46
+//wall 46
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":19*u,"y":5*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//47
+//wall 47
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":1*u,"y":6*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//48
+//wall 48
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":2*u,"y":6*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//49
+//wall 49
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":3*u,"y":6*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//50
+//wall 50
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":4*u,"y":6*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//51
+//wall 51
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":6*u,"y":6*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//52
+//wall 52
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":10*u,"y":6*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//53
+//wall 53
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":12*u,"y":6*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//54
+//wall 54
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":13*u,"y":6*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//55
+//wall 55
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":14*u,"y":6*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//56
+//wall 56
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":15*u,"y":6*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//57
+//wall 57
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":17*u,"y":6*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//58
+//wall 58
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":19*u,"y":6*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//59
+//wall 59
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":4*u,"y":7*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//60
+//wall 60
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":6*u,"y":7*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//61
+//wall 61
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":7*u,"y":7*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//62
+//wall 62
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":8*u,"y":7*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//63
+//wall 63
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":9*u,"y":7*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//64
+//wall 64
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":10*u,"y":7*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//65
+//wall 65
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":13*u,"y":7*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//66
+//wall 66
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":17*u,"y":7*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//67
+//wall 67
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":4*u,"y":8*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//68
+//wall 68
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":9*u,"y":8*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//69
+//wall 69
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":10*u,"y":8*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//70
+//wall 70
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":11*u,"y":8*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//71
+//wall 71
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":13*u,"y":8*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//72
+//wall 72
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":14*u,"y":8*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//73
+//wall 73
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":15*u,"y":8*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//74
+//wall 74
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":16*u,"y":8*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//75
+//wall 75
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":17*u,"y":8*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//76
+//wall 76
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":18*u,"y":8*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//77
+//wall 77
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":4*u,"y":9*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//78
+//wall 78
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":5*u,"y":9*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//79
+//wall 79
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":6*u,"y":9*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//80
+//wall 80
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":7*u,"y":9*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//81
+//wall 81
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":9*u,"y":9*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//82
+//wall 82
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":10*u,"y":9*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//83
+//wall 83
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":11*u,"y":9*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//84
+//wall 84
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":13*u,"y":9*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//85
+//wall 85
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":14*u,"y":9*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//86
+//wall 86
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":2*u,"y":10*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//87
+//wall 87
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":3*u,"y":10*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//88
+//wall 88
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":4*u,"y":10*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//89
+//wall 89
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":5*u,"y":10*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//90
+//wall 90
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":6*u,"y":10*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//91
+//wall 91
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":7*u,"y":10*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//92
+//wall 92
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":9*u,"y":10*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//93
+//wall 93
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":10*u,"y":10*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//94
+//wall 94
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":13*u,"y":10*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//95
+//wall 95
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":14*u,"y":10*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//96
+//wall 96
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":16*u,"y":10*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//97
+//wall 97
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":17*u,"y":10*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//98
+//wall 98
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":18*u,"y":10*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//99
+//wall 99
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":19*u,"y":10*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//100
+//wall 100
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":1*u,"y":11*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//101
+//wall 101
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":2*u,"y":11*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//102
+//wall 102
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":7*u,"y":11*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//103
+//wall 103
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":12*u,"y":11*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//104
+//wall 104
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":13*u,"y":11*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//105
+//wall 105
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":14*u,"y":11*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//106
+//wall 106
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":18*u,"y":11*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//107
+//wall 107
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":1*u,"y":12*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//108
+//wall 108
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":4*u,"y":12*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//109
+//wall 109
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":5*u,"y":12*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//110
+//wall 110
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":8*u,"y":12*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//111
+//wall 111
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":9*u,"y":12*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//112
+//wall 112
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":10*u,"y":12*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//113
+//wall 113
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":11*u,"y":12*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//114
+//wall 114
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":12*u,"y":12*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//115
+//wall 115
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":14*u,"y":12*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//116
+//wall 116
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":15*u,"y":12*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//117
+//wall 117
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":16*u,"y":12*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//118
+//wall 118
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":18*u,"y":12*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//119
+//wall 119
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":1*u,"y":13*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//120
+//wall 120
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":3*u,"y":13*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//121
+//wall 121
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":4*u,"y":13*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//122
+//wall 122
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":5*u,"y":13*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//123
+//wall 123
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":6*u,"y":13*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//124
+//wall 124
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":9*u,"y":13*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//125
+//wall 125
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":11*u,"y":13*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//126
+//wall 126
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":12*u,"y":13*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//127
+//wall 127
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":13*u,"y":13*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//128
+//wall 128
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":14*u,"y":13*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//129
+//wall 129
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":15*u,"y":13*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//130
+//wall 130
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":16*u,"y":13*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//131
+//wall 131
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":18*u,"y":13*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//132
+//wall 132
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":1*u,"y":14*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//133
+//wall 133
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":6*u,"y":14*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//134
+//wall 134
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":7*u,"y":14*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//135
+//wall 135
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":9*u,"y":14*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//136
+//wall 136
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":10*u,"y":14*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//137
+//wall 137
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":11*u,"y":14*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//138
+//wall 138
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":18*u,"y":14*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//139
+//wall 139
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":1*u,"y":15*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//140
+//wall 140
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":2*u,"y":15*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//141
+//wall 141
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":3*u,"y":15*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//142
+//wall 142
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":4*u,"y":15*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//143
+//wall 143
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":6*u,"y":15*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//144
+//wall 144
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":7*u,"y":15*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//145
+//wall 145
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":9*u,"y":15*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//146
+//wall 146
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":10*u,"y":15*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//147
+//wall 147
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":13*u,"y":15*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//148
+//wall 148
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":14*u,"y":15*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//149
+//wall 149
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":15*u,"y":15*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//150
+//wall 150
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":16*u,"y":15*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//151
+//wall 151
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":17*u,"y":15*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//152
+//wall 152
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":18*u,"y":15*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//153
+//wall 153
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":3*u,"y":16*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//154
+//wall 154
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":6*u,"y":16*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//155
+//wall 155
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":7*u,"y":16*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//156
+//wall 156
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":12*u,"y":16*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//157
+//wall 157
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":18*u,"y":16*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//158
+//wall 158
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":3*u,"y":17*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//159
+//wall 159
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":5*u,"y":17*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//160
+//wall 160
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":6*u,"y":17*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//161
+//wall 161
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":7*u,"y":17*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//162
+//wall 162
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":8*u,"y":17*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//163
+//wall 163
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":9*u,"y":17*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//164
+//wall 164
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":10*u,"y":17*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//165
+//wall 165
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":11*u,"y":17*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//166
+//wall 166
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":12*u,"y":17*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//167
+//wall 167
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":14*u,"y":17*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//168
+//wall 168
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":15*u,"y":17*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//169
+//wall 169
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":16*u,"y":17*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//170
+//wall 170
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":18*u,"y":17*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//171
+//wall 171
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":3*u,"y":18*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//172
+//wall 172
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":8*u,"y":18*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//173
+//wall 173
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":9*u,"y":18*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//174
+//wall 174
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":10*u,"y":18*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//175
+//wall 175
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":11*u,"y":18*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//176
+//wall 176
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":12*u,"y":18*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//177
+//wall 177
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":14*u,"y":18*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//178
+//wall 178
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":15*u,"y":18*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//179
+//wall 179
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":18*u,"y":18*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//180
+//wall 180
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":3*u,"y":19*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//181
+//wall 181
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":4*u,"y":19*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//182
+//wall 182
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":5*u,"y":19*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//183
+//wall 183
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":6*u,"y":19*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//184
+//wall 184
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":14*u,"y":19*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//185
+//wall 185
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":15*u,"y":19*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//186
+//wall 186
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":16*u,"y":19*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//187
+//wall 187
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":17*u,"y":19*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
 stage.addItem(item);
 
-//188
+//wall 188
 item=stage.createNewItem();
 item.setName("wall");
 item.addAnimation({"dsp":true,"x":18*u,"y":19*u,"w":u,"h":u,"img":"brick01.png","bgc":"BlanchedAlmond","bdc":"peru"});
