@@ -934,7 +934,7 @@ function dispIndex(){
 <body onLoad="initHelper()">
 <h4>VIMRIO helper for creator ver2.2.0</h4><br/>
 unit size=<input type="text" id="hlpunitsize" value="8" size="4"/>[%]<br/>
-start x=<input type="text" id="hlpx0" value="4" size="4"/>[unit]
+start x=<input type="text" id="hlpx0" value="6" size="4"/>[unit]
  , y=<input type="text" id="hlpy0" value="2" size="4"/>[unit]<br/>
 move and word string (support character= h j k l w b e $ ^ 0 gg G f F )<br/>
 <p> example :<br/>
@@ -942,7 +942,7 @@ w --> w"xx "w"yy zz"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b --> b"zz"b"xx yy "&nbsp;&nbs
 $ --> $"aa bb cc"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^ --> ^" aa bb cc"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0 --> 0"aa bb cc"<br/>
 f[character] --> fe"abc defg"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F[character] --> Fb"abc defg"<br/></p>
 <span class="hlpindex"></span><br/>
-<textarea id="hlpansstr" onKeyUp="dispIndex()">hhhkkw"word jump"jjlljjb"yyy"e"back to "jj$"move tail"jljj^"  mv head"j</textarea><br/>
+<textarea id="hlpansstr" onKeyUp="dispIndex()">hhhkkw"word jump"jjlljjb"yyy"b"back to "jj$"mv tail"jj^" move head"jje"end word"j</textarea><br/>
 <input class="hlpcodebtn" type="button" onClick="createCode()" value="Create Code" /><span class="hlpwaitmsg" style="visibility:hidden">Please wait a minute.</span>
 <br/>
 <span class="hlpcol hlpcolstart">start</span><span class="hlpcol hlpcolroad">road</span><span class="hlpcol hlpcolgoal">goal</span><span class="hlpcol hlpcolwd1">word</span><span class="hlpcol hlpcolwd2">word</span><span class="hlpcol hlpcolwall">wall</span><span class="hlpcol hlpcoldoor">door</span><span class="hlpcol hlpcolwarn">warning</span><br/>
