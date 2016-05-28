@@ -65,7 +65,7 @@ var StageClass=function(){
 			//console.log("correct");
 
 			this.typeStr+=ansc;
-			if(ansc==="g" && prec!=="g"){
+			if((ansc==="g" && prec!=="g") || (ansc==="f" && prec!=="f")  || (ansc==="F" && prec!=="F") ){
 				;
 			}
 			else{
@@ -76,7 +76,7 @@ var StageClass=function(){
 		}
 		else{
 			//console.log("fail");
-			if(prec==="g"){
+			if(prec==="g" || prec==="f"|| prec==="F"){
 				this.typeStr=this.typeStr.substr(0,this.typeStr.length-1);
 			}
 			return false;
